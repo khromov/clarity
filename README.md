@@ -7,11 +7,11 @@ This plugin removes donation links and other nags for popular plugins.
 
 ### Example
 
-Before
+**Before**  
+![](https://dl.dropboxusercontent.com/u/2758854/hush_before.png)
 
-
-After
-
+**After**
+![](https://dl.dropboxusercontent.com/u/2758854/hush_after.png)
 
 ### Supports
 
