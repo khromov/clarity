@@ -1,7 +1,8 @@
 <?php
 /*
  * Plugin Name: WP Hush
- * Plugin URI:
+ * Plugin URI: https://github.com/khromov/wp-hush
+ * GitHub Plugin URI: khromov/wp-hush
  * Description: Remove obnoxious nags and donation links from popular plugins.
  * Author:      khromov
  * Version:     1.0

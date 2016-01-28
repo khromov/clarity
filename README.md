@@ -28,4 +28,4 @@ This plugin removes donation links and other nags for popular plugins.
 
 ### Will this plugin be added to WordPress.org? 
 
-Not planned, but you can use Composer.
+Not planned, but you can use [GitHub Updater](https://github.com/afragen/github-updater) or Composer.
