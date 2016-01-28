@@ -20,4 +20,11 @@ After
 
 ### I want plugin X to be supported
 
-Please create a pull request!
+* Start by forking the plugin.
+* Adding new hiding rules is easy. There are two ways of hiding nags - `add_css_selector($selector)` (added at head, recommended) or `add_js_selector($selector)` (added on document.ready in footer via `jQuery().hide()`) 
+* In the `hush()` function, add the hiding rule at the bottom, for example: `$this->add_css_selector('.obnoxious-nag');`
+* Afterwards, please create a pull request!
+
+### Will this plugin be added to WordPress.org? 
+
+Not planned, but you can use Composer.
