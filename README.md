@@ -17,6 +17,7 @@ This plugin removes donation links and other nags for popular plugins.
 
 * Better WordPress ReCAPTCHA 
 * Yoast SEO
+* TJ Custom CSS
 
 ### I want plugin X to be supported
 
