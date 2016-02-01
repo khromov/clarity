@@ -37,6 +37,9 @@ class WP_Hush {
     $this->add_css_selector('#bwp-get-social');
     $this->add_css_selector('.bwp-button-paypal');
     $this->add_css_selector('#bwp-sidebar-right');
+    
+    //TJ Custom CSS
+    $this->add_css_selector('.tjcc-custom-css #postbox-container-1');
   }
 
   /**
