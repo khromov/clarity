@@ -5,7 +5,7 @@
  * GitHub Plugin URI: khromov/wp-hush
  * Description: Remove obnoxious nags and donation links from popular plugins.
  * Author:      khromov
- * Version:     1.0
+ * Version:     1.0.1
  * Text Domain: wp-hush
  * Domain Path: /languages/
  * License:     GPL v2 or later
