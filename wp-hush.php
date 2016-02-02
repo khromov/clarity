@@ -40,6 +40,9 @@ class WP_Hush {
     
     //TJ Custom CSS
     $this->add_css_selector('.tjcc-custom-css #postbox-container-1');
+    
+    //CBX Custom Taxonomy Filter
+    $this->add_css_selector('.settings_page_wpcustomtaxfilterinadmin #postbox-container-1');
   }
 
   /**
