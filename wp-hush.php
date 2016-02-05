@@ -43,6 +43,9 @@ class WP_Hush {
     
     //CBX Custom Taxonomy Filter
     $this->add_css_selector('.settings_page_wpcustomtaxfilterinadmin #postbox-container-1');
+    
+    //Duplicate Posts
+    $this->add_css_selector('.settings_page_duplicatepost #wpbody-content .wrap > div');
   }
 
   /**
