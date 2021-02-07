@@ -1,0 +1,66 @@
+-- Yoast sidebar nag
+.wpseo_content_wrapper #sidebar-container
+
+-- Better WordPress ReCAPTCHA
+#bwp-get-social
+.bwp-button-paypal
+#bwp-sidebar-right
+
+-- TJ Custom CSS
+.tjcc-custom-css #postbox-container-1
+
+-- CBX Custom Taxonomy Filter
+.settings_page_wpcustomtaxfilterinadmin #postbox-container-1
+
+-- Duplicate Posts
+.settings_page_duplicatepost #wpbody-content .wrap > div
+
+-- TODO: :above: look over
+
+-- WPS Hide Login
+div[id^="dnh-wrm"]
+
+-- Ad Inserter
+.notice-info.dst-notice
+
+-- googleanalytics
+#googleanalytics_terms_notice
+
+-- Unyson
+.fw-brz-dismiss
+
+-- Elementor
+div.elementor-message[data-notice_id="elementor_dev_promote"]
+
+-- Redirection for Contact Form 7
+.notice-success.wpcf7r-notice
+
+-- Disable Comments
+.dc-text__block.disable__comment__alert
+
+-- Admin Menu Editor
+#ws_sidebar_pro_ad
+
+-- Premium Addons for Elementor
+.pa-new-feature-notice
+
+-- Redux
+#redux-connect-message
+
+-- Smush
+.frash-notice-email
+
+-- Easy Updates Manager
+#easy-updates-manager-dashnotice
+
+-- Metaslider
+#metaslider-optin-notice
+
+-- WP User Avatar "recommends" MailOption
+.mo-admin-notice
+
+-- post-smtp-donation
+.post-smtp-donation
+
+-- Widget Area Block
+div[data-dismissible="notice-owa-sale-forever"]
