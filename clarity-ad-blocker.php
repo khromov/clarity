@@ -15,6 +15,8 @@
  */
 
  define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+ define('CLARITY_AD_BLOCKER_ENABLED', true);
+ 
 /**
  * Class WP_Hush
  */

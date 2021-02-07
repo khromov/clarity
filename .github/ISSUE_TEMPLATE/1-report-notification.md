@@ -14,7 +14,7 @@ assignees: khromov
 **Upload a screenshot from your WordPress admin where the nag is clearly visible**
 (Drag an image here to upload it)
 
-**When does the nag appear**
+**When does the nag appear?**
 - [ ] Right away after installing the plugin
 - [ ] After some time - 24hrs, 7 days, etc.
 - [ ] Other: (Please specify)
