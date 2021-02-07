@@ -2,7 +2,7 @@
 /*
  * Plugin Name: Clarity - Ad blocker for WordPress
  * Plugin URI: https://github.com/khromov/wp-clarity
- * GitHub Plugin URI: khromov/wp-clarity
+ * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
  * Version:     1.0.210207
