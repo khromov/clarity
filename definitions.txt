@@ -64,3 +64,18 @@ div.elementor-message[data-notice_id="elementor_dev_promote"]
 
 -- Widget Area Block
 div[data-dismissible="notice-owa-sale-forever"]
+
+-- Themeisle Companion
+.neve-notice-upsell
+
+-- Pagelayer Pro promo
+#pagelayer_promo
+
+-- Simple Custom Post Order rate nag
+#simple-custom-post-order-epsilon-review-notice
+
+-- Ultimate Social Media icons nags in various places
+.sfsi_new_prmium_follw
+
+-- The Events Calendar analytics nag
+div.fs-slug-the-events-calendar[data-id="connect_account"]
