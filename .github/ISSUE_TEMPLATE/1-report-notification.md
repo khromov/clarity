@@ -1,8 +1,8 @@
 ---
 name: Report an upsell, personal data opt-in or other notification
-about: If you want to report a plugin nag or upsell so that we can add it to the block
+about: If you want to report a plugin/theme notification so that we can add it to the block
   list
-title: ''
+title: 'Plugin/Theme name: '
 labels: filter-request
 assignees: khromov
 
