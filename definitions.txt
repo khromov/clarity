@@ -79,3 +79,6 @@ div[data-dismissible="notice-owa-sale-forever"]
 
 -- The Events Calendar analytics nag
 div.fs-slug-the-events-calendar[data-id="connect_account"]
+
+-- WebP Converter for Media
+div.notice[data-notice="webp-converter"]
