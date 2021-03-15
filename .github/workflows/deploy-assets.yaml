@@ -1,8 +1,8 @@
-name: Deploy
+name: Deploy assets
 on:
   push:
     branches:
-      - master
+    - master
 jobs:
   assets:
     name: Push to master
@@ -11,17 +11,6 @@ jobs:
       - uses: actions/checkout@master
       - name: WordPress.org plugin asset/readme update
         uses: 10up/action-wordpress-plugin-asset-update@1.4.1
-        env:
-          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
-          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
-          SLUG: ${{ secrets.SLUG }}
-  tag:
-    name: New tag
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: WordPress Plugin Deploy
-        uses: 10up/action-wordpress-plugin-deploy@1.5.0
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
