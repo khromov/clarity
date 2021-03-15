@@ -1,4 +1,4 @@
-name: Plugin asset/readme update
+name: Deploy
 on:
   push:
     branches:
