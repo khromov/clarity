@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - master
+  workflow_dispatch:
 jobs:
   assets:
     name: Push to master
@@ -10,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: WordPress.org plugin asset/readme update
-        uses: wearerequired/action-wordpress-plugin-asset-update@cc639dd # https://github.com/10up/action-wordpress-plugin-asset-update/issues/12#issuecomment-733592465
+        uses: wearerequired/action-wordpress-plugin-asset-update@cc639dd68b9857e2cfe4cfbd11d1cf4c340b4adf # https://github.com/10up/action-wordpress-plugin-asset-update/issues/12#issuecomment-733592465
         env:
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
