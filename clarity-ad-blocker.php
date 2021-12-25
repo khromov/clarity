@@ -5,7 +5,7 @@
  * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
- * Version:     1.0.210415
+ * Version:     1.0.211225
  * Requires at least: 5.0
  * Tested up to: 5.6
  * Requires PHP: 7.0
