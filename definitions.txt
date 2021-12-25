@@ -81,7 +81,7 @@ div[data-dismissible="notice-owa-sale-forever"]
 div.fs-slug-the-events-calendar[data-id="connect_account"]
 
 -- WebP Converter for Media
-div.notice[data-notice="webp-converter"]
+div.notice[data-notice="webp-converter-for-media"]
 
 -- Generic "Plugin Usage Tracker" class
 .put-dismiss-notice
