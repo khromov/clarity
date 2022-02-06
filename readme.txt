@@ -2,7 +2,7 @@
 Contributors: khromov
 Tags: notifications, ads, adblock
 Requires at least: 5.0
-Tested up to: 5.6
+Tested up to: 5.9
 Requires PHP: 7.0
 Stable tag: trunk
 License: GPL2
