@@ -55,6 +55,7 @@ div.elementor-message[data-notice_id="elementor_dev_promote"]
 
 -- Metaslider
 #metaslider-optin-notice
+#extendifysdk_announcement
 
 -- WP User Avatar "recommends" MailOption
 .mo-admin-notice
