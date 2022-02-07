@@ -1,5 +1,7 @@
--- Yoast sidebar nag
+-- Yoast premium nags
 .wpseo_content_wrapper #sidebar-container
+.yoast_premium_upsell
+#wpseo-local-seo-upsell
 
 -- Better WordPress ReCAPTCHA
 #bwp-get-social
