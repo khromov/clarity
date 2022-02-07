@@ -2,6 +2,7 @@
 .wpseo_content_wrapper #sidebar-container
 .yoast_premium_upsell
 #wpseo-local-seo-upsell
+.yoast-settings-section-upsell
 
 -- Better WordPress ReCAPTCHA
 #bwp-get-social
