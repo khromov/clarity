@@ -5,7 +5,7 @@
  * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
- * Version:     1.0.220210
+ * Version:     1.0.220211
  * Requires at least: 5.0
  * Tested up to: 5.9
  * Requires PHP: 7.0
@@ -14,9 +14,9 @@
  * License:     GPL v2 or later
  */
 
- define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
- define('CLARITY_AD_BLOCKER_ENABLED', true);
- 
+define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
+define('CLARITY_AD_BLOCKER_ENABLED', true);
+
 /**
  * Class WP_Hush
  */
@@ -33,14 +33,16 @@ class WP_Clarity {
    * @return void
    */
   function getDefinitions($loadFromSource = false) {
-    if(!$loadFromSource && file_exists(WP_CLARITY_PATH . 'definitions.php')) {
-      do_action( 'qm/info', 'Loading definitions from precompiled PHP' );
+    if (!$loadFromSource && file_exists(WP_CLARITY_PATH . 'definitions.php')) {
+      do_action('qm/info', 'Loading definitions from precompiled PHP');
       return include(WP_CLARITY_PATH . 'definitions.php');
     }
 
-    do_action( 'qm/info', 'Loading definitions from text file' );
-    $filterEmptyLines = function($item) { return !!$item; };
-    $filterComments = function($item) {
+    do_action('qm/info', 'Loading definitions from text file');
+    $filterEmptyLines = function ($item) {
+      return !!$item;
+    };
+    $filterComments = function ($item) {
       return trim(preg_replace('/(--.*)/', '', $item));
     };
 
@@ -56,15 +58,15 @@ class WP_Clarity {
    */
   function admin_head() {
     $selectors = $this->getDefinitions();
-    if(strlen($selectors) === 0) return;
-    ?>
-      <!-- Clarity - Ad blocker for WordPress -->
-      <style type="text/css">
-        <?php echo $selectors; ?> {
-          display: none !important;
-        }
-      </style>
-    <?php
+    if (strlen($selectors) === 0) return;
+?>
+    <!-- Clarity - Ad blocker for WordPress -->
+    <style type="text/css">
+      <?php echo $selectors; ?> {
+        display: none !important;
+      }
+    </style>
+<?php
   }
 
   /**
@@ -74,13 +76,13 @@ class WP_Clarity {
    */
   function plugins_loaded() {
     /* Google XML Sitemaps */
-    add_filter('option_sm_options', function($option) {
+    add_filter('option_sm_options', function ($option) {
       $option['sm_i_hide_survey'] = true;
       return $option;
     });
 
     /* wp-smtp */
-    add_filter('pre_option_postman_release_version', function($option) {
+    add_filter('pre_option_postman_release_version', function ($option) {
       return true;
     });
   }

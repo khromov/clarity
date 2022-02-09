@@ -93,3 +93,7 @@ div.notice[data-notice="webp-converter-for-media"]
 
 -- WP Mail SMTP
 .wp-mail-smtp-review-notice
+#wp-mail-smtp-pro-banner
+
+-- Hopefully most Freemius ads
+body div.promotion.fs-notice
