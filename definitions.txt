@@ -97,3 +97,9 @@ div.notice[data-notice="webp-converter-for-media"]
 
 -- Hopefully most Freemius ads
 body div.promotion.fs-notice
+
+-- Analytify
+.analytify-review-thumbnail
+
+-- Jetpack
+.jitm-banner.is-upgrade-premium
