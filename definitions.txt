@@ -87,6 +87,7 @@ div.fs-slug-the-events-calendar[data-id="connect_account"]
 
 -- WebP Converter for Media
 div.notice[data-notice="webp-converter-for-media"]
+.webpLoader__popup.webpPopup
 
 -- Generic "Plugin Usage Tracker" class
 .put-dismiss-notice
