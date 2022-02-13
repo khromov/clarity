@@ -114,7 +114,8 @@ class WP_Clarity {
 
   public function filter_plugin_action_links( array $actions ) {
 		return array_merge( array(
-      'FAQ' => '<a href="https://wordpress.org/plugins/clarity-ad-blocker/#faq" target="_blank">' . esc_html__( 'FAQ', 'clarity-ad-blocker' ) . '</a>',
+      'website' => '<a href="https://wp-clarity.dev/" target="_blank">' . esc_html__( 'Website', 'clarity-ad-blocker' ) . '</a>',
+      'faq' => '<a href="https://wordpress.org/plugins/clarity-ad-blocker/#faq" target="_blank">' . esc_html__( 'FAQ', 'clarity-ad-blocker' ) . '</a>',
 			'report-unwanted-banner' => '<a href="https://github.com/khromov/clarity/issues/new?assignees=khromov&labels=filter-request&template=1-report-notification.md&title=Plugin%2FTheme+name%3A+" target="_blank">' . esc_html__( 'Report unwanted banner', 'clarity-ad-blocker' ) . '</a>',
 		), $actions );
 	}
