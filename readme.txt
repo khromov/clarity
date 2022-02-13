@@ -30,7 +30,11 @@ Frequently Asked Questions for information about how to troubleshoot or add new 
 
 == Frequently Asked Questions ==
 
-= A plugin I'm using is still showing notifications! =
+= Where is the settings page? =
+
+The plugin has no settings page, it works without any need to configure it. If you are still seeing some unwanted banners, see below.
+
+= A plugin I'm using is still showing banners or notifications! =
 
 Clarity works using a visual block list, similar to a browser ad blocker. Plugins have to be added manually.
 You can [create an issue](https://github.com/khromov/clarity/issues/new/choose) to ask for a plugin to be supported.
@@ -43,6 +47,7 @@ Please [create an issue](https://github.com/khromov/clarity/issues/new/choose) a
 
 Generally, your plugin must fulfill the following:
 - Your notifications are shown only on an option page that belongs to your plugin, and nowhere else.
+- Your notifications are shown only for Administrator role users.
 - You have unique CSS classes to make it easy to identify different types of notifications that you use.
 
 == Screenshots ==
@@ -57,6 +62,10 @@ N/A
 == Changelog ==
 
 Clarity receives regular updates to its block list. The versioning standard is `<major-version>.<minor-version>.<date-of-latest-block-list-update>`. For example version `1.0.220201` means you are running version `1.0` of the plugin using the block list from february 1st, 2022.
+
+= 1.1 =
+
+* Added helpful links in the plugins list
 
 = 1.0 =
 

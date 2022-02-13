@@ -10,6 +10,9 @@ assignees: khromov
 <!--
 Please note that block list removal requests are only accepted if:
 - The notification is shown only on an option page that belongs to your plugin, and nowhere else.
+- The notification must be shown only to Administrator role users
+- The notification may not be intrusive or distractiong
+- The notification should  not be displayed in the main column, but rather in an "aside".
 - Add unique CSS classes to make it easy to identify different types of notifications that you use.
 
 Additionally, You must turn off all privacy-invading / upsell notifications if the CLARITY_AD_BLOCKER_ENABLED constant is set to true.
