@@ -9,7 +9,7 @@
  * Requires at least: 5.0
  * Tested up to: 5.9
  * Requires PHP: 7.0
- * Text Domain: wp-clarity
+ * Text Domain: clarity-ad-blocker
  * Domain Path: /languages/
  * License:     GPL v2 or later
  */
