@@ -5,7 +5,7 @@
  * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
- * Version:     1.1.220213
+ * Version:     1.2.220216
  * Requires at least: 5.0
  * Tested up to: 5.9
  * Requires PHP: 7.0
@@ -25,8 +25,7 @@ class WP_Clarity {
     add_action('admin_head', [$this, 'admin_head']);
     add_action('plugins_loaded', [$this, 'plugins_loaded']);
     add_action('cli_init', [$this, 'cli_init']);
-    add_filter( 'plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links'] );
-
+    add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
   }
 
   /**
@@ -112,13 +111,13 @@ class WP_Clarity {
     WP_CLI::success("Built definitions.php");
   }
 
-  public function filter_plugin_action_links( array $actions ) {
-		return array_merge( array(
-      'website' => '<a href="https://wp-clarity.dev/" target="_blank">' . esc_html__( 'Website', 'clarity-ad-blocker' ) . '</a>',
-      'faq' => '<a href="https://wordpress.org/plugins/clarity-ad-blocker/#faq" target="_blank">' . esc_html__( 'FAQ', 'clarity-ad-blocker' ) . '</a>',
-			'report-unwanted-banner' => '<a href="https://github.com/khromov/clarity/issues/new?assignees=khromov&labels=filter-request&template=1-report-notification.md&title=Plugin%2FTheme+name%3A+" target="_blank">' . esc_html__( 'Report unwanted banner', 'clarity-ad-blocker' ) . '</a>',
-		), $actions );
-	}
+  public function filter_plugin_action_links(array $actions) {
+    return array_merge(array(
+      'website' => '<a href="https://wp-clarity.dev/" target="_blank">' . esc_html__('Website', 'clarity-ad-blocker') . '</a>',
+      'faq' => '<a href="https://wordpress.org/plugins/clarity-ad-blocker/#faq" target="_blank">' . esc_html__('FAQ', 'clarity-ad-blocker') . '</a>',
+      'report-unwanted-banner' => '<a href="https://github.com/khromov/clarity/issues/new?assignees=khromov&labels=filter-request&template=1-report-notification.md&title=Plugin%2FTheme+name%3A+" target="_blank">' . esc_html__('Report unwanted banner', 'clarity-ad-blocker') . '</a>',
+    ), $actions);
+  }
 }
 
 $wp_clarity = new WP_Clarity();
