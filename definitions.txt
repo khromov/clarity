@@ -104,3 +104,11 @@ body div.promotion.fs-notice
 
 -- Jetpack
 .jitm-banner.is-upgrade-premium
+
+-- Webcraftic Local Google Analytics
+div[data-name*="wbcr_factory_notice_adverts"]
+
+-- Forminator
+.sui-subscription-notice
+#sui-cross-sell-footer
+.sui-cross-sell-modules
