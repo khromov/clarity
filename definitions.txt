@@ -112,3 +112,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 .sui-subscription-notice
 #sui-cross-sell-footer
 .sui-cross-sell-modules
+
+-- AnWP Post Grid and Post Carousel Slider for Elementor
+.anwp-post-grid__rate
