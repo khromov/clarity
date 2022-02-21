@@ -86,6 +86,11 @@ class WP_Clarity {
     add_filter('pre_option_postman_release_version', function ($option) {
       return true;
     });
+
+    /* Members review notice */
+    if (!defined('MEMBERS_DISABLE_REVIEW_PROMPT')) {
+      define('MEMBERS_DISABLE_REVIEW_PROMPT', true);
+    }
   }
 
   /**
