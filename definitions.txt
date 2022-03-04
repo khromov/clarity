@@ -52,6 +52,9 @@ div.elementor-message[data-notice_id="elementor_dev_promote"]
 
 -- Smush
 .frash-notice-email
+.frash-notice-rate
+#smush-box-pro-features
+#wp-smush-bulk-smush-upsell-row
 
 -- Easy Updates Manager
 #easy-updates-manager-dashnotice
@@ -112,6 +115,8 @@ div[data-name*="wbcr_factory_notice_adverts"]
 .sui-subscription-notice
 #sui-cross-sell-footer
 .sui-cross-sell-modules
+.forminator-rating-notice
+.sui-dashboard-upsell-upsell
 
 -- AnWP Post Grid and Post Carousel Slider for Elementor
 .anwp-post-grid__rate
