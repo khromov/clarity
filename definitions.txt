@@ -16,9 +16,7 @@
 .settings_page_wpcustomtaxfilterinadmin #postbox-container-1
 
 -- Duplicate Posts
-.settings_page_duplicatepost #wpbody-content .wrap > div
-
--- TODO: :above: look over
+#duplicate-post-notice #newsletter-subscribe-form
 
 -- WPS Hide Login
 div[id^="dnh-wrm"]
