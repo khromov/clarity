@@ -63,7 +63,7 @@ N/A
 
 Clarity receives regular updates to its block list. The versioning standard is `<major-version>.<minor-version>.<date-of-latest-block-list-update>`. For example version `1.0.220201` means you are running version `1.0` of the plugin using the block list from february 1st, 2022.
 
-You can always find the latest block list <a href="https://github.com/khromov/clarity/blob/master/definitions.txt">here</a>.
+You can always find the latest block list <a target="_blank" href="https://github.com/khromov/clarity/blob/master/definitions.txt">here</a>. You can see the latest changes to the block list <a target="_blank" href="https://github.com/khromov/clarity/commits/master/definitions.txt">here</a>.
 
 = 1.3 =
 
