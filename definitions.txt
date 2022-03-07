@@ -118,3 +118,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- AnWP Post Grid and Post Carousel Slider for Elementor
 .anwp-post-grid__rate
+
+-- Smash Balloon Social Post Feed
+.cff-settings-cta
