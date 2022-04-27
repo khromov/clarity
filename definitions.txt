@@ -121,3 +121,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Smash Balloon Social Post Feed
 .cff-settings-cta
+
+-- Activity Log
+.aal-install-elementor
