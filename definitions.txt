@@ -122,6 +122,11 @@ div[data-name*="wbcr_factory_notice_adverts"]
 -- Smash Balloon Social Post Feed
 .cff-settings-cta
 .cff-header-upgrade-notice
+.cff_notice.cff_review_notice_step_1
+.cff_get_pro_highlight
 
 -- Activity Log
 .aal-install-elementor
+
+-- Admin Columns
+#ws_sidebar_pro_ad
