@@ -130,3 +130,10 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Admin Columns
 #ws_sidebar_pro_ad
+
+-- Bold Timeline Lite
+.bold-timeline-lite-feedback-notice-wrapper
+
+-- ElementsKit Lite
+#elementskit-lite-go-pro-noti2ce
+#elementskit-lite-_plugin_rating_msg_used_in_day
