@@ -60,7 +60,6 @@ div.elementor-message[data-notice_id="elementor_dev_promote"]
 -- Metaslider
 #metaslider-optin-notice
 #extendifysdk_announcement
-.updraft-ad-container
 
 -- WP User Avatar "recommends" MailOption
 .mo-admin-notice
@@ -137,3 +136,9 @@ div[data-name*="wbcr_factory_notice_adverts"]
 -- ElementsKit Lite
 #elementskit-lite-go-pro-noti2ce
 #elementskit-lite-_plugin_rating_msg_used_in_day
+
+-- YARPP Related Posts
+.yarpp-review-notice
+
+-- Pretty Links
+#prli_review_notice
