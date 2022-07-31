@@ -142,3 +142,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Pretty Links
 #prli_review_notice
+
+-- Webdados plugins
+#webdados_invoicexpress_nag
