@@ -145,3 +145,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Webdados plugins
 #webdados_invoicexpress_nag
+
+-- Visual Composer
+#vc_license-activation-notice
