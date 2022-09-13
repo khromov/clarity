@@ -151,3 +151,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Visual Composer
 #vc_license-activation-notice
+
+-- ALD - Dropshipping and Fulfillment for AliExpress and WooCommerce
+.villatheme-dashboard.updated
