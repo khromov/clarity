@@ -154,3 +154,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- ALD - Dropshipping and Fulfillment for AliExpress and WooCommerce
 .villatheme-dashboard.updated
+
+-- Filebird
+#njt-FileBird-review
