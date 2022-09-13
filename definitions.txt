@@ -4,6 +4,9 @@
 #wpseo-local-seo-upsell
 .yoast-settings-section-upsell
 
+-- Rank Math SEO
+#rank_math_review_plugin_notice
+
 -- Better WordPress ReCAPTCHA
 #bwp-get-social
 .bwp-button-paypal
