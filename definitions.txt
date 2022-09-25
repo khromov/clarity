@@ -104,7 +104,7 @@ body div.promotion.fs-notice
 
 -- Analytify
 .analytify-review-thumbnail
-#analytify-review-notice
+.analytify-review-notice
 
 -- Jetpack
 .jitm-banner.is-upgrade-premium
