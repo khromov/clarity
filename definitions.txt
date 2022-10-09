@@ -161,3 +161,6 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Redis Object Cache
 .notice[data-dismissible="pro_release_notice"]
+
+-- Variation Swatches for WooCommerce
+#thwvsf_review_request_notice
