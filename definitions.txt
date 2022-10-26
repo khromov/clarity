@@ -164,3 +164,13 @@ div[data-name*="wbcr_factory_notice_adverts"]
 
 -- Variation Swatches for WooCommerce
 #thwvsf_review_request_notice
+
+-- BetterDocs
+.wpdeveloper-review-notice
+
+-- TI WooCommerce Wishlist
+div[data-notice_type="tinvwl-user-review"]
+div[data-notice_type="tinvwl-user-premium"]
+
+-- BackupGuard
+#sg-backup-review-wrapper
