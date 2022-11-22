@@ -24,7 +24,6 @@ class WP_Clarity {
   function __construct() {
     add_action('admin_head', [$this, 'admin_head']);
     add_action('plugins_loaded', [$this, 'plugins_loaded']);
-    add_action('cli_init', [$this, 'cli_init']);
     add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
   }
 
