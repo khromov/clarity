@@ -174,3 +174,11 @@ div[data-notice_type="tinvwl-user-premium"]
 
 -- BackupGuard
 #sg-backup-review-wrapper
+
+-- MonsterInsights – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.monsterinsights-floating-bar
+
+-- ExactMetrics – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.exactmetrics-floating-bar
