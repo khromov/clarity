@@ -91,6 +91,11 @@ class WP_Clarity {
     if (!defined('MEMBERS_DISABLE_REVIEW_PROMPT')) {
       define('MEMBERS_DISABLE_REVIEW_PROMPT', true);
     }
+
+    /* MetaSlider */
+    if (!defined('METASLIDER_DISABLE_SEASONAL_NOTICES')) {
+      define('METASLIDER_DISABLE_SEASONAL_NOTICES', true);
+    } 
   }
 
   /**

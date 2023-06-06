@@ -63,6 +63,7 @@ div.elementor-message[data-notice_id="elementor_dev_promote"]
 -- Metaslider
 #metaslider-optin-notice
 #extendifysdk_announcement
+.ml-discount-ad
 
 -- WP User Avatar "recommends" MailOption
 .mo-admin-notice
@@ -174,3 +175,32 @@ div[data-notice_type="tinvwl-user-premium"]
 
 -- BackupGuard
 #sg-backup-review-wrapper
+
+-- wpmet
+.notice-wpmet-jhanda-getgenie-cross-promo
+.notice-getgenie-go-pro-noti2ce
+.notice-wpmet-jhanda-Summer2023
+
+--Woocommerce Checkout Field Editor
+.thwcfd-review-wrapper
+
+--Premmerce WooCommerce Product Filter Premium
+.woo-permalink-manager-banner
+
+-- Eco Nature WordPress Theme
+div.notice.bundle-notice
+
+-- Widget Area Block
+div.notice[data-dismissible="notice-owa-upgrade-forever"]
+
+-- Responsive Accordion And Collapse
+.wpsm-acc-r-review-notice
+
+-- Tabs Responsive
+.wpsm_ac_h_i
+
+-- Accessibility Checker
+.edac-review-notice
+
+-- PWA easy way to Progressive Web App
+.notice-iworks-rate
