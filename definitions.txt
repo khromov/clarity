@@ -213,3 +213,6 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 -- ExactMetrics – Google Analytics Dashboard for WordPress
 #monterinsights-admin-menu-tooltip
 .exactmetrics-floating-bar
+
+-- MetForm
+#metform-unsupported-metform-pro-version
