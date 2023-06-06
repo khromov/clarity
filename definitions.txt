@@ -87,6 +87,7 @@ div[data-dismissible="notice-owa-sale-forever"]
 
 -- The Events Calendar analytics nag
 div.fs-slug-the-events-calendar[data-id="connect_account"]
+.tribe-notice-event-tickets-install
 
 -- WebP Converter for Media
 div.notice[data-notice="webp-converter-for-media"]
@@ -174,3 +175,11 @@ div[data-notice_type="tinvwl-user-premium"]
 
 -- BackupGuard
 #sg-backup-review-wrapper
+
+-- MonsterInsights – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.monsterinsights-floating-bar
+
+-- ExactMetrics – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.exactmetrics-floating-bar
