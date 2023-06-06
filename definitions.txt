@@ -88,6 +88,7 @@ div[data-dismissible="notice-owa-sale-forever"]
 
 -- The Events Calendar analytics nag
 div.fs-slug-the-events-calendar[data-id="connect_account"]
+.tribe-notice-event-tickets-install
 
 -- WebP Converter for Media
 div.notice[data-notice="webp-converter-for-media"]
@@ -204,3 +205,11 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- PWA easy way to Progressive Web App
 .notice-iworks-rate
+
+-- MonsterInsights – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.monsterinsights-floating-bar
+
+-- ExactMetrics – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.exactmetrics-floating-bar
