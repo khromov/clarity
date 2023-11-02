@@ -219,3 +219,39 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- LuckyWP ToC
 .lwptocRate
+
+-- Tabs Responsive plugin
+.wpsm-tabs-b-review-notice
+
+-- WC Direct Checkout
+.quadlayers_woocommerce-direct-checkout_notice_delay
+
+-- iworks-pwa
+.iworks-rate-notice
+
+-- metform
+#metform-_plugin_rating_msg_used_in_day
+[id^="wpmet-jhanda-"]
+#wpmet-stories
+
+-- Menu Icons
+#ti-optml-notice-helper
+.menu-icon-dashboard-notice
+
+-- Catch Bells
+.catch-bells-admin-notice
+
+-- wpDataTables
+.wpdt-bundles-notice
+
+-- TagDiv Newspaper
+.td-admin-web-services
+
+-- MultiCollab Commenting Feature
+.cf-plugin-popup
+
+-- Media Library Organizer
+.wpzinc-review-media-library-organizer
+
+-- Image Hover Effects for Elementor
+.oxi-image-notice
