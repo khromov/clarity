@@ -5,7 +5,7 @@
  * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
- * Version:     1.3.230607
+ * Version:     1.3.231102
  * Requires at least: 5.0
  * Tested up to: 6.0
  * Requires PHP: 7.0
@@ -24,6 +24,7 @@ class WP_Clarity {
   function __construct() {
     add_action('admin_head', [$this, 'admin_head']);
     add_action('plugins_loaded', [$this, 'plugins_loaded']);
+    add_action('after_setup_theme', [$this, 'themes_loaded']);
     add_action('cli_init', [$this, 'cli_init']);
     add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
   }
@@ -96,6 +97,16 @@ class WP_Clarity {
     if (!defined('METASLIDER_DISABLE_SEASONAL_NOTICES')) {
       define('METASLIDER_DISABLE_SEASONAL_NOTICES', true);
     } 
+  }
+
+  /**
+   * Special handling for themes that can't rely on CSS rules
+   *
+   * @return void
+   */
+  function themes_loaded() {
+    /* VisualBusiness */
+    remove_action('admin_notices', 'visualbusiness_notice');
   }
 
   /**
