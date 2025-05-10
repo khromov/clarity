@@ -5,7 +5,7 @@
  * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
- * Version:     1.4
+ * Version:     1.4.1
  * Requires at least: 5.0
  * Tested up to: 6.7
  * Requires PHP: 7.0
@@ -48,29 +48,8 @@ class WP_Clarity {
 		add_action( 'plugins_loaded', [ $this, 'plugins_loaded' ] );
 		add_action( 'after_setup_theme', [ $this, 'themes_loaded' ] );
 		add_action( $this->cron_hook, [ $this, 'update_definitions_from_remote' ] );
-		add_action( 'upgrader_process_complete', [ $this, 'handle_plugin_update' ], 10, 2 );
 		add_filter( 'plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [ $this, 'filter_plugin_action_links' ] );
 		add_action( 'cli_init', [ $this, 'cli_init' ] );
-	}
-
-	/**
-	 * Handle plugin update
-	 */
-	function handle_plugin_update( $upgrader_object, $options ) {
-		if ( $options['action'] !== 'update' || $options['type'] !== 'plugin' ) {
-			return;
-		}
-
-		if ( ! isset( $options['plugins'] ) || ! in_array( plugin_basename( __FILE__ ), $options['plugins'] ) ) {
-			return;
-		}
-
-		do_action( 'qm/info', 'Clarity plugin update detected' );
-
-		if ( ! wp_next_scheduled( $this->cron_hook ) ) {
-			wp_schedule_event( time(), 'daily', $this->cron_hook );
-			do_action( 'qm/info', 'Scheduled definitions update CRON job after plugin update' );
-		}
 	}
 
 	/**
@@ -210,6 +189,12 @@ class WP_Clarity {
 		/* MetaSlider */
 		if ( ! defined( 'METASLIDER_DISABLE_SEASONAL_NOTICES' ) ) {
 			define( 'METASLIDER_DISABLE_SEASONAL_NOTICES', true );
+		}
+		
+		// Check if CRON job is scheduled and schedule it if not
+		if ( ! wp_next_scheduled( $this->cron_hook ) ) {
+			wp_schedule_event( time(), 'daily', $this->cron_hook );
+			do_action( 'qm/info', 'Scheduled definitions update CRON job in plugins_loaded' );
 		}
 	}
 
