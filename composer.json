@@ -12,7 +12,7 @@
     "php": ">=7.0"
   },
   "require-dev": {
-    "10up/phpcs-composer": "dev-master"
+    "10up/phpcs-composer": "^3.0"
   },
   "scripts": {
     "lint": "phpcs . -s",
