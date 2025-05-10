@@ -59,7 +59,6 @@ class WP_Clarity {
     add_action($this->cron_hook, [$this, 'update_definitions_from_remote']);
 
     // Admin-related hooks
-    add_action('admin_init', [$this, 'admin_init']);
     add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
     
     // WP-CLI integration
@@ -89,65 +88,48 @@ class WP_Clarity {
   function deactivate_plugin() {
     // Remove the CRON job
     wp_clear_scheduled_hook($this->cron_hook);
+    
+    // Optionally remove the stored option
+    delete_option($this->option_name);
   }
 
   /**
-   * Admin initialization
+   * Process definitions text into CSS selectors
    *
-   * @return void
+   * @param string $content Raw definitions text
+   * @return string Processed CSS selectors
    */
-  function admin_init() {
-    // Handle manual refresh of definitions
-    if (isset($_GET['action']) && $_GET['action'] === 'clarity-refresh' && check_admin_referer('clarity_refresh')) {
-      $success = $this->update_definitions_from_remote();
-      
-      // Redirect back to plugins page with status
-      wp_redirect(add_query_arg(
-        ['clarity-updated' => $success ? 'success' : 'error'],
-        admin_url('plugins.php')
-      ));
-      exit;
-    }
+  function process_definitions_text($content) {
+    $filter_empty_lines = function ($item) {
+      return !!$item;
+    };
     
-    // Show admin notice after definition refresh
-    if (isset($_GET['clarity-updated'])) {
-      add_action('admin_notices', function() {
-        $status = $_GET['clarity-updated'];
-        $class = $status === 'success' ? 'notice-success' : 'notice-error';
-        $message = $status === 'success' 
-          ? __('Clarity definitions updated successfully.', 'clarity-ad-blocker')
-          : __('Failed to update Clarity definitions. Using local definitions.', 'clarity-ad-blocker');
-          
-        printf('<div class="notice %s is-dismissible"><p>%s</p></div>', esc_attr($class), esc_html($message));
-      });
-    }
+    $filter_comments = function ($item) {
+      return trim(preg_replace('/(--.*)/', '', $item));
+    };
+
+    $rules_file = explode("\n", $content);
+    
+    return implode(', ', apply_filters('wp_clarity_rules', 
+      array_filter(array_filter($rules_file, $filter_comments), $filter_empty_lines)
+    ));
   }
 
   /**
    * Get definitions from cache or local file
    *
-   * @param bool $forceRefresh Force refresh from remote
+   * @param bool $force_refresh Force refresh from local file
    * @return string CSS selectors string
    */
-  function getDefinitions($forceRefresh = false) {
+  function getDefinitions($force_refresh = false) {
     // If force refresh or no cached definitions exist
-    if ($forceRefresh || false === ($cached = get_option($this->option_name))) {
+    if ($force_refresh || false === ($cached = get_option($this->option_name))) {
       // Log info if debugging is enabled
       do_action('qm/info', 'No cached definitions found or refresh forced');
       
-      // Try to update from remote
-      $this->update_definitions_from_remote();
-      
-      // Get the potentially updated option
-      $cached = get_option($this->option_name);
-      
-      // If still no cached definitions, fallback to local
-      if (false === $cached) {
-        do_action('qm/info', 'Using local definitions as fallback');
-        return $this->getLocalDefinitions();
-      }
-      
-      return $cached;
+      // If no cached definitions, fallback to local
+      do_action('qm/info', 'Using local definitions as fallback');
+      return $this->getLocalDefinitions();
     }
     
     do_action('qm/info', 'Using cached definitions from database');
@@ -162,17 +144,8 @@ class WP_Clarity {
   function getLocalDefinitions() {
     do_action('qm/info', 'Loading definitions from local text file');
     
-    $filterEmptyLines = function ($item) {
-      return !!$item;
-    };
-    
-    $filterComments = function ($item) {
-      return trim(preg_replace('/(--.*)/', '', $item));
-    };
-
-    $rulesFile = explode("\n", file_get_contents(WP_CLARITY_PATH . 'definitions.txt'));
-    
-    return implode(', ', apply_filters('wp_clarity_rules', array_filter(array_filter($rulesFile, $filterComments), $filterEmptyLines)));
+    $content = file_get_contents(WP_CLARITY_PATH . 'definitions.txt');
+    return $this->process_definitions_text($content);
   }
 
   /**
@@ -185,7 +158,7 @@ class WP_Clarity {
     
     $response = wp_remote_get($this->definitions_url);
     
-    if (is_wp_error($response) || 200 !== wp_remote_retrieve_response_code($response)) {
+    if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
       // If unable to fetch, use local definitions but don't update cache
       do_action('qm/info', 'Failed to fetch remote definitions');
       return false;
@@ -199,19 +172,10 @@ class WP_Clarity {
     }
     
     // Process the content
-    $filterEmptyLines = function ($item) {
-      return !!$item;
-    };
+    $processed_definitions = $this->process_definitions_text($content);
     
-    $filterComments = function ($item) {
-      return trim(preg_replace('/(--.*)/', '', $item));
-    };
-
-    $rulesFile = explode("\n", $content);
-    $processedDefinitions = implode(', ', apply_filters('wp_clarity_rules', array_filter(array_filter($rulesFile, $filterComments), $filterEmptyLines)));
-    
-      
-    update_option($this->option_name, $processedDefinitions, false);
+    // Update the option with autoload=false
+    update_option($this->option_name, $processed_definitions, false);
     
     do_action('qm/info', 'Updated remote definitions successfully');
     
@@ -328,7 +292,6 @@ class WP_Clarity {
     return array_merge(array(
       'website' => '<a href="https://wp-clarity.dev/" target="_blank">' . esc_html__('Website', 'clarity-ad-blocker') . '</a>',
       'faq' => '<a href="https://wordpress.org/plugins/clarity-ad-blocker/#faq" target="_blank">' . esc_html__('FAQ', 'clarity-ad-blocker') . '</a>',
-      'refresh' => '<a href="' . wp_nonce_url(admin_url('admin.php?action=clarity-refresh'), 'clarity_refresh') . '">' . esc_html__('Refresh definitions', 'clarity-ad-blocker') . '</a>',
       'report-unwanted-banner' => '<a href="https://github.com/khromov/clarity/issues/new?assignees=khromov&labels=filter-request&template=1-report-notification.md&title=Plugin%2FTheme+name%3A+" target="_blank">' . esc_html__('Report unwanted banner', 'clarity-ad-blocker') . '</a>',
     ), $actions);
   }
