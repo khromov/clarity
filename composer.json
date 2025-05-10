@@ -1,0 +1,26 @@
+{
+  "name": "khromov/clarity",
+  "description": "Ad blocker for WordPress",
+  "type": "wordpress-plugin",
+  "license": "GPL2",
+  "authors": [
+    {
+      "name": "Khromov"
+    }
+  ],
+  "require": {
+    "php": ">=7.0"
+  },
+  "require-dev": {
+    "10up/phpcs-composer": "^3.0"
+  },
+  "scripts": {
+    "lint": "phpcs . -s",
+    "lint-fix": "phpcbf ."
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
