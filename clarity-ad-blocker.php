@@ -23,73 +23,46 @@ define('CLARITY_AD_BLOCKER_ENABLED', true);
 class WP_Clarity {
   /**
    * Option name for storing the definitions
-   *
-   * @var string
    */
   private $option_name = 'wp_clarity_definitions';
 
   /**
    * CRON hook name
-   *
-   * @var string
    */
   private $cron_hook = 'wp_clarity_update_definitions';
 
   /**
    * URL to the remote definitions file
-   *
-   * @var string
    */
   private $definitions_url = 'https://khromov.github.io/clarity/definitions.txt';
 
-  /**
-   * Constructor
-   */
   function __construct() {
-    // Register activation and deactivation hooks
     register_activation_hook(__FILE__, [$this, 'activate_plugin']);
     register_deactivation_hook(__FILE__, [$this, 'deactivate_plugin']);
 
-    // Core functionality
     add_action('admin_head', [$this, 'admin_head']);
     add_action('plugins_loaded', [$this, 'plugins_loaded']);
     add_action('after_setup_theme', [$this, 'themes_loaded']);
-
-    // CRON event handler
     add_action($this->cron_hook, [$this, 'update_definitions_from_remote']);
-    
-    // Plugin update hook
     add_action('upgrader_process_complete', [$this, 'handle_plugin_update'], 10, 2);
-
-    // Admin-related hooks
     add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
-    
-    // WP-CLI integration
     add_action('cli_init', [$this, 'cli_init']);
   }
 
   /**
    * Handle plugin update
-   *
-   * @param object $upgrader_object WP_Upgrader instance
-   * @param array $options Upgrade options
-   * @return void
    */
   function handle_plugin_update($upgrader_object, $options) {
-    // Only proceed if this is a plugin update
     if ($options['action'] !== 'update' || $options['type'] !== 'plugin') {
       return;
     }
     
-    // Check if our plugin was updated
     if (!isset($options['plugins']) || !in_array(plugin_basename(__FILE__), $options['plugins'])) {
       return;
     }
     
-    // Log the update
     do_action('qm/info', 'Clarity plugin update detected');
     
-    // Schedule the CRON job if not already scheduled
     if (!wp_next_scheduled($this->cron_hook)) {
       wp_schedule_event(time(), 'daily', $this->cron_hook);
       do_action('qm/info', 'Scheduled definitions update CRON job after plugin update');
@@ -98,37 +71,25 @@ class WP_Clarity {
 
   /**
    * Plugin activation hook
-   *
-   * @return void
    */
   function activate_plugin() {
-    // Schedule the CRON job if not already scheduled
     if (!wp_next_scheduled($this->cron_hook)) {
       wp_schedule_event(time(), 'daily', $this->cron_hook);
     }
     
-    // Force an initial update from remote
     $this->update_definitions_from_remote();
   }
 
   /**
    * Plugin deactivation hook
-   *
-   * @return void
    */
   function deactivate_plugin() {
-    // Remove the CRON job
     wp_clear_scheduled_hook($this->cron_hook);
-    
-    // Optionally remove the stored option
     delete_option($this->option_name);
   }
 
   /**
    * Process definitions text into CSS selectors
-   *
-   * @param string $content Raw definitions text
-   * @return string Processed CSS selectors
    */
   function process_definitions_text($content) {
     $filter_empty_lines = function ($item) {
@@ -148,20 +109,12 @@ class WP_Clarity {
 
   /**
    * Get definitions from cache or local file
-   *
-   * @param bool $force_refresh Force refresh from local file
-   * @return string CSS selectors string
    */
   function getDefinitions($force_refresh = false) {
-    // Get cached definitions
     $cached = get_option($this->option_name);
     
-    // If force refresh or no cached definitions exist
     if ($force_refresh || $cached === false) {
-      // Log info if debugging is enabled
       do_action('qm/info', 'No cached definitions found or refresh forced');
-      
-      // If no cached definitions, fallback to local
       do_action('qm/info', 'Using local definitions as fallback');
       return $this->getLocalDefinitions();
     }
@@ -172,8 +125,6 @@ class WP_Clarity {
 
   /**
    * Get definitions from local file
-   *
-   * @return string CSS selectors string
    */
   function getLocalDefinitions() {
     do_action('qm/info', 'Loading definitions from local text file');
@@ -184,8 +135,6 @@ class WP_Clarity {
 
   /**
    * Update definitions from remote source
-   *
-   * @return bool Success or failure
    */
   function update_definitions_from_remote() {
     do_action('qm/info', 'Attempting to fetch remote definitions');
@@ -193,7 +142,6 @@ class WP_Clarity {
     $response = wp_remote_get($this->definitions_url);
     
     if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
-      // If unable to fetch, use local definitions but don't update cache
       do_action('qm/info', 'Failed to fetch remote definitions');
       return false;
     }
@@ -205,10 +153,7 @@ class WP_Clarity {
       return false;
     }
     
-    // Process the content
     $processed_definitions = $this->process_definitions_text($content);
-    
-    // Update the option with autoload=false
     update_option($this->option_name, $processed_definitions, false);
     
     do_action('qm/info', 'Updated remote definitions successfully');
@@ -218,8 +163,6 @@ class WP_Clarity {
 
   /**
    * Special handling for plugins that can't rely on CSS rules
-   *
-   * @return void
    */
   function plugins_loaded() {
     /* Google XML Sitemaps */
@@ -246,8 +189,6 @@ class WP_Clarity {
 
   /**
    * Hides stuff via CSS in the admin header
-   * 
-   * @return void
    */
   function admin_head() {
     $selectors = $this->getDefinitions();
@@ -264,8 +205,6 @@ class WP_Clarity {
 
   /**
    * Special handling for themes that can't rely on CSS rules
-   *
-   * @return void
    */
   function themes_loaded() {
     /* VisualBusiness */
@@ -274,8 +213,6 @@ class WP_Clarity {
 
   /**
    * Registers WP CLI commands
-   *
-   * @return void
    */
   function cli_init() {
     if (!class_exists('WP_CLI')) {
@@ -287,11 +224,7 @@ class WP_Clarity {
   }
 
   /**
-   * Build WP Clarity definition file for production.
-   *
-   * @param array $args Command args
-   * @param array $assoc_args Command assoc args
-   * @return void
+   * Build WP Clarity definition file for production
    */
   function cli_build($args, $assoc_args) {
     $definitions = var_export($this->getLocalDefinitions(), true);
@@ -301,10 +234,6 @@ class WP_Clarity {
   
   /**
    * Update definitions from remote source via CLI
-   *
-   * @param array $args Command args
-   * @param array $assoc_args Command assoc args
-   * @return void
    */
   function cli_update($args, $assoc_args) {
     $result = $this->update_definitions_from_remote();
@@ -318,9 +247,6 @@ class WP_Clarity {
 
   /**
    * Filter plugin action links
-   *
-   * @param array $actions Existing actions
-   * @return array Modified actions
    */
   public function filter_plugin_action_links(array $actions) {
     return array_merge(array(
