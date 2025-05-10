@@ -16,7 +16,6 @@
 
 define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('CLARITY_AD_BLOCKER_ENABLED', true);
-define('WP_CLARITY_VERSION', '1.4');
 
 /**
  * Class WP_Clarity
@@ -28,13 +27,6 @@ class WP_Clarity {
    * @var string
    */
   private $option_name = 'wp_clarity_definitions';
-
-  /**
-   * Option name for storing the plugin version
-   *
-   * @var string
-   */
-  private $version_option_name = 'wp_clarity_version';
 
   /**
    * CRON hook name
@@ -102,18 +94,6 @@ class WP_Clarity {
       wp_schedule_event(time(), 'daily', $this->cron_hook);
       do_action('qm/info', 'Scheduled definitions update CRON job after plugin update');
     }
-    
-    // Get the current stored version
-    $stored_version = get_option($this->version_option_name, '0');
-    
-    // If updating from a version before 1.4, trigger an initial definition fetch
-    if (version_compare($stored_version, '1.4', '<')) {
-      do_action('qm/info', 'First update to v1.4+, fetching initial remote definitions');
-      $this->update_definitions_from_remote();
-    }
-    
-    // Update the stored version
-    update_option($this->version_option_name, WP_CLARITY_VERSION);
   }
 
   /**
@@ -129,9 +109,6 @@ class WP_Clarity {
     
     // Force an initial update from remote
     $this->update_definitions_from_remote();
-    
-    // Store the current version
-    update_option($this->version_option_name, WP_CLARITY_VERSION);
   }
 
   /**
