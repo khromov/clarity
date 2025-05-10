@@ -122,8 +122,11 @@ class WP_Clarity {
    * @return string CSS selectors string
    */
   function getDefinitions($force_refresh = false) {
+    // Get cached definitions
+    $cached = get_option($this->option_name);
+    
     // If force refresh or no cached definitions exist
-    if ($force_refresh || false === ($cached = get_option($this->option_name))) {
+    if ($force_refresh || $cached === false) {
       // Log info if debugging is enabled
       do_action('qm/info', 'No cached definitions found or refresh forced');
       
