@@ -2,7 +2,7 @@
 Contributors: khromov
 Tags: notifications, ads, adblock
 Requires at least: 5.0
-Tested up to: 6.0
+Tested up to: 6.3
 Requires PHP: 7.0
 Stable tag: trunk
 License: GPL2
@@ -16,6 +16,10 @@ asking you to pay for upgraded version or to collect your personal data.
 
 The plugin requires zero configuration. Simply install and activate Clarity and obtrusive ads will disappear. Please see the 
 Frequently Asked Questions for information about how to troubleshoot or add new entries to the block list.
+
+*Auto-updating definitions*
+
+Clarity now automatically fetches the latest ad-blocking definitions from our GitHub repository daily. This ensures you always have the most current protections against intrusive plugin and theme notifications.
 
 == Requirements ==
 * PHP 7.0 or higher
@@ -41,6 +45,10 @@ You can [create an issue](https://github.com/khromov/clarity/issues/new/choose) 
 You can also make a GitHub pull requst to the [official block list](https://github.com/khromov/clarity/blob/master/definitions.txt) - 
 in that case, add an entry to the `definitions.txt` file with a CSS selector that hides the notification.
 
+= How can I manually refresh the definitions list? =
+
+You can click the "Refresh definitions" link in the plugins list to manually update the definitions from our repository.
+
 = I am a plugin or theme author, how can I avoid being filtered? =
 
 Please [create an issue](https://github.com/khromov/clarity/issues/new/choose) and select "Ask for filter removal".
@@ -64,6 +72,12 @@ N/A
 Clarity receives regular updates to its block list. The versioning standard is `<major-version>.<minor-version>.<date-of-latest-block-list-update>`. For example version `1.0.220201` means you are running version `1.0` of the plugin using the block list from february 1st, 2022.
 
 You can always find the latest block list <a target="_blank" href="https://github.com/khromov/clarity/blob/master/definitions.txt">here</a>. You can see the latest changes to the block list <a target="_blank" href="https://github.com/khromov/clarity/commits/master/definitions.txt">here</a>.
+
+= 1.4 =
+
+* Added auto-updating definitions feature - definitions are now fetched daily from our GitHub repository
+* Added manual "Refresh definitions" action in the plugin list
+* Improved error handling for definition updates
 
 = 1.3 =
 

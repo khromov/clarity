@@ -5,75 +5,180 @@
  * GitHub Plugin URI: khromov/clarity
  * Description: Remove nags and upsells from popular WordPress plugins.
  * Author:      khromov
- * Version:     1.3.221026
+ * Version:     1.4
  * Requires at least: 5.0
- * Tested up to: 6.0
+ * Tested up to: 6.7
  * Requires PHP: 7.0
  * Text Domain: clarity-ad-blocker
  * Domain Path: /languages/
  * License:     GPL v2 or later
  */
 
+
+// For debugging purposes only
+// define('CLARITY_DEBUG', true);
+
 define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('CLARITY_AD_BLOCKER_ENABLED', true);
 
 /**
- * Class WP_Hush
+ * Class WP_Clarity
  */
 class WP_Clarity {
+  /**
+   * Option name for storing the definitions
+   */
+  private $option_name = 'wp_clarity_definitions';
+
+  /**
+   * CRON hook name
+   */
+  private $cron_hook = 'wp_clarity_update_definitions';
+
+  /**
+   * URL to the remote definitions file
+   */
+  private $definitions_url = 'https://khromov.github.io/clarity/definitions.txt';
+
   function __construct() {
+    register_activation_hook(__FILE__, [$this, 'activate_plugin']);
+    register_deactivation_hook(__FILE__, [$this, 'deactivate_plugin']);
+
     add_action('admin_head', [$this, 'admin_head']);
     add_action('plugins_loaded', [$this, 'plugins_loaded']);
-    add_action('cli_init', [$this, 'cli_init']);
+    add_action('after_setup_theme', [$this, 'themes_loaded']);
+    add_action($this->cron_hook, [$this, 'update_definitions_from_remote']);
+    add_action('upgrader_process_complete', [$this, 'handle_plugin_update'], 10, 2);
     add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
+    add_action('cli_init', [$this, 'cli_init']);
   }
 
   /**
-   * Generate definitions from definitions.txt
-   *
-   * @return string
+   * Handle plugin update
    */
-  function getDefinitions($loadFromSource = false) {
-    if (!$loadFromSource && file_exists(WP_CLARITY_PATH . 'definitions.php')) {
-      do_action('qm/info', 'Loading definitions from precompiled PHP');
-      return include(WP_CLARITY_PATH . 'definitions.php');
+  function handle_plugin_update($upgrader_object, $options) {
+    if ($options['action'] !== 'update' || $options['type'] !== 'plugin') {
+      return;
     }
+    
+    if (!isset($options['plugins']) || !in_array(plugin_basename(__FILE__), $options['plugins'])) {
+      return;
+    }
+    
+    do_action('qm/info', 'Clarity plugin update detected');
+    
+    if (!wp_next_scheduled($this->cron_hook)) {
+      wp_schedule_event(time(), 'daily', $this->cron_hook);
+      do_action('qm/info', 'Scheduled definitions update CRON job after plugin update');
+    }
+  }
 
-    do_action('qm/info', 'Loading definitions from text file');
-    $filterEmptyLines = function ($item) {
+  /**
+   * Plugin activation hook
+   */
+  function activate_plugin() {
+    if (!wp_next_scheduled($this->cron_hook)) {
+      wp_schedule_event(time(), 'daily', $this->cron_hook);
+    }
+    
+    $this->update_definitions_from_remote();
+  }
+
+  /**
+   * Plugin deactivation hook
+   */
+  function deactivate_plugin() {
+    wp_clear_scheduled_hook($this->cron_hook);
+    delete_option($this->option_name);
+  }
+
+  /**
+   * Process definitions text into CSS selectors
+   */
+  function process_definitions_text($content) {
+    $filter_empty_lines = function ($item) {
       return !!$item;
     };
-    $filterComments = function ($item) {
+    
+    $filter_comments = function ($item) {
       return trim(preg_replace('/(--.*)/', '', $item));
     };
 
-    $rulesFile = explode("\n", file_get_contents(WP_CLARITY_PATH . 'definitions.txt'));
-
-    return implode(', ', apply_filters('wp_clarity_rules', array_filter(array_filter($rulesFile, $filterComments), $filterEmptyLines)));
+    $rules_file = explode("\n", $content);
+    
+    return implode(', ', apply_filters('wp_clarity_rules', 
+      array_filter(array_filter($rules_file, $filter_comments), $filter_empty_lines)
+    ));
   }
 
   /**
-   *  Hides stuff via CSS in the admin header
-   * 
-   * @return void
+   * Get definitions from cache or local file
    */
-  function admin_head() {
-    $selectors = $this->getDefinitions();
-    if (strlen($selectors) === 0) return;
-?>
-    <!-- Clarity - Ad blocker for WordPress -->
-    <style type="text/css">
-      <?php echo $selectors; ?> {
-        display: none !important;
-      }
-    </style>
-<?php
+  function getDefinitions($force_refresh = false) {
+    // If debug mode is enabled, always use local definitions
+    if (defined('CLARITY_DEBUG') && CLARITY_DEBUG) {
+      do_action('qm/info', 'Debug mode enabled, using local definitions');
+      return $this->getLocalDefinitions();
+    }
+    
+    $cached = get_option($this->option_name);
+    
+    if ($force_refresh || $cached === false) {
+      do_action('qm/info', 'No cached definitions found or refresh forced');
+      do_action('qm/info', 'Using local definitions as fallback');
+      return $this->getLocalDefinitions();
+    }
+    
+    do_action('qm/info', 'Using cached definitions from database');
+    return $cached;
+  }
+
+  /**
+   * Get definitions from local file
+   */
+  function getLocalDefinitions() {
+    do_action('qm/info', 'Loading definitions from local text file');
+    
+    $content = file_get_contents(WP_CLARITY_PATH . 'definitions.txt');
+    return $this->process_definitions_text($content);
+  }
+
+  /**
+   * Update definitions from remote source
+   */
+  function update_definitions_from_remote() {
+    // Don't update from remote in debug mode
+    if (defined('CLARITY_DEBUG') && CLARITY_DEBUG) {
+      do_action('qm/info', 'Debug mode enabled, skipping remote definitions update');
+      return false;
+    }
+    
+    do_action('qm/info', 'Attempting to fetch remote definitions');
+    
+    $response = wp_remote_get($this->definitions_url);
+    
+    if (is_wp_error($response) || wp_remote_retrieve_response_code($response) !== 200) {
+      do_action('qm/info', 'Failed to fetch remote definitions');
+      return false;
+    }
+    
+    $content = wp_remote_retrieve_body($response);
+    
+    if (empty($content)) {
+      do_action('qm/info', 'Remote definitions were empty');
+      return false;
+    }
+    
+    $processed_definitions = $this->process_definitions_text($content);
+    update_option($this->option_name, $processed_definitions, false);
+    
+    do_action('qm/info', 'Updated remote definitions successfully');
+    
+    return true;
   }
 
   /**
    * Special handling for plugins that can't rely on CSS rules
-   *
-   * @return void
    */
   function plugins_loaded() {
     /* Google XML Sitemaps */
@@ -91,31 +196,64 @@ class WP_Clarity {
     if (!defined('MEMBERS_DISABLE_REVIEW_PROMPT')) {
       define('MEMBERS_DISABLE_REVIEW_PROMPT', true);
     }
+
+    /* MetaSlider */
+    if (!defined('METASLIDER_DISABLE_SEASONAL_NOTICES')) {
+      define('METASLIDER_DISABLE_SEASONAL_NOTICES', true);
+    } 
   }
 
   /**
-   * Registers WP CLI commands to build precompiled version
-   * of filters
-   *
-   * @return void
+   * Hides stuff via CSS in the admin header
+   */
+  function admin_head() {
+    $selectors = $this->getDefinitions();
+    if (strlen($selectors) === 0) return;
+?>
+    <!-- Clarity - Ad blocker for WordPress -->
+    <style type="text/css">
+      <?php echo $selectors; ?> {
+        display: none !important;
+      }
+    </style>
+<?php
+  }
+
+  /**
+   * Special handling for themes that can't rely on CSS rules
+   */
+  function themes_loaded() {
+    /* VisualBusiness */
+    remove_action('admin_notices', 'visualbusiness_notice');
+  }
+
+  /**
+   * Registers WP CLI commands
    */
   function cli_init() {
-    WP_CLI::add_command('clarity-build', [$this, 'cli_build']);
+    if (!class_exists('WP_CLI')) {
+      return;
+    }
+    
+    WP_CLI::add_command('clarity-update', [$this, 'cli_update']);
+  }
+  
+  /**
+   * Update definitions from remote source via CLI
+   */
+  function cli_update($args, $assoc_args) {
+    $result = $this->update_definitions_from_remote();
+    
+    if ($result) {
+      WP_CLI::success("Remote definitions updated successfully");
+    } else {
+      WP_CLI::warning("Failed to update remote definitions, using local definitions");
+    }
   }
 
   /**
-   * Build WP Clarity definition file for production.
-   *
-   * @param [type] $args
-   * @param [type] $assoc_args
-   * @return void
+   * Filter plugin action links
    */
-  function cli_build($args, $assoc_args) {
-    $definitions = var_export($this->getDefinitions(true), true);
-    file_put_contents(WP_CLARITY_PATH . 'definitions.php', "<?php\n/* This file is automatically generated, do not update manually! Use 'wp clarity-build' to generate. */ \nreturn {$definitions};");
-    WP_CLI::success("Built definitions.php");
-  }
-
   public function filter_plugin_action_links(array $actions) {
     return array_merge(array(
       'website' => '<a href="https://wp-clarity.dev/" target="_blank">' . esc_html__('Website', 'clarity-ad-blocker') . '</a>',

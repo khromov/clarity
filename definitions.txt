@@ -3,6 +3,7 @@
 .yoast_premium_upsell
 #wpseo-local-seo-upsell
 .yoast-settings-section-upsell
+#webinar-promo-notification
 
 -- Rank Math SEO
 #rank_math_review_plugin_notice
@@ -63,6 +64,7 @@ div.elementor-message[data-notice_id="elementor_dev_promote"]
 -- Metaslider
 #metaslider-optin-notice
 #extendifysdk_announcement
+.ml-discount-ad
 
 -- WP User Avatar "recommends" MailOption
 .mo-admin-notice
@@ -87,10 +89,12 @@ div[data-dismissible="notice-owa-sale-forever"]
 
 -- The Events Calendar analytics nag
 div.fs-slug-the-events-calendar[data-id="connect_account"]
+.tribe-notice-event-tickets-install
 
 -- WebP Converter for Media
 div.notice[data-notice="webp-converter-for-media"]
 .webpLoader__popup.webpPopup
+.webpcPopup
 
 -- Generic "Plugin Usage Tracker" class
 .put-dismiss-notice
@@ -174,3 +178,82 @@ div[data-notice_type="tinvwl-user-premium"]
 
 -- BackupGuard
 #sg-backup-review-wrapper
+
+-- wpmet
+.notice-wpmet-jhanda-getgenie-cross-promo
+.notice-getgenie-go-pro-noti2ce
+.notice-wpmet-jhanda-Summer2023
+
+--Woocommerce Checkout Field Editor
+.thwcfd-review-wrapper
+
+--Premmerce WooCommerce Product Filter Premium
+.woo-permalink-manager-banner
+
+-- Eco Nature WordPress Theme
+div.notice.bundle-notice
+
+-- Widget Area Block
+div.notice[data-dismissible="notice-owa-upgrade-forever"]
+
+-- Responsive Accordion And Collapse
+.wpsm-acc-r-review-notice
+
+-- Tabs Responsive
+.wpsm_ac_h_i
+
+-- Accessibility Checker
+.edac-review-notice
+
+-- PWA easy way to Progressive Web App
+.notice-iworks-rate
+
+-- MonsterInsights – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.monsterinsights-floating-bar
+
+-- ExactMetrics – Google Analytics Dashboard for WordPress
+#monterinsights-admin-menu-tooltip
+.exactmetrics-floating-bar
+
+-- MetForm
+#metform-unsupported-metform-pro-version
+
+-- LuckyWP ToC
+.lwptocRate
+
+-- Tabs Responsive plugin
+.wpsm-tabs-b-review-notice
+
+-- WC Direct Checkout
+.quadlayers_woocommerce-direct-checkout_notice_delay
+
+-- iworks-pwa
+.iworks-rate-notice
+
+-- metform
+#metform-_plugin_rating_msg_used_in_day
+[id^="wpmet-jhanda-"]
+#wpmet-stories
+
+-- Menu Icons
+#ti-optml-notice-helper
+.menu-icon-dashboard-notice
+
+-- Catch Bells
+.catch-bells-admin-notice
+
+-- wpDataTables
+.wpdt-bundles-notice
+
+-- TagDiv Newspaper
+.td-admin-web-services
+
+-- MultiCollab Commenting Feature
+.cf-plugin-popup
+
+-- Media Library Organizer
+.wpzinc-review-media-library-organizer
+
+-- Image Hover Effects for Elementor
+.oxi-image-notice
