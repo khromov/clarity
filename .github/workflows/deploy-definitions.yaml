@@ -30,10 +30,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      - name: Prepare directory for artifact
+        run: |
+          mkdir -p _site
+          cp definitions.txt _site/
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: definitions.txt
+          path: _site
 
       - name: Deploy to GitHub Pages
         id: deployment
