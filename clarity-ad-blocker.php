@@ -14,6 +14,10 @@
  * License:     GPL v2 or later
  */
 
+
+// For debugging purposes only
+// define('CLARITY_DEBUG', true);
+
 define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('CLARITY_AD_BLOCKER_ENABLED', true);
 
@@ -111,6 +115,12 @@ class WP_Clarity {
    * Get definitions from cache or local file
    */
   function getDefinitions($force_refresh = false) {
+    // If debug mode is enabled, always use local definitions
+    if (defined('CLARITY_DEBUG') && CLARITY_DEBUG) {
+      do_action('qm/info', 'Debug mode enabled, using local definitions');
+      return $this->getLocalDefinitions();
+    }
+    
     $cached = get_option($this->option_name);
     
     if ($force_refresh || $cached === false) {
@@ -137,6 +147,12 @@ class WP_Clarity {
    * Update definitions from remote source
    */
   function update_definitions_from_remote() {
+    // Don't update from remote in debug mode
+    if (defined('CLARITY_DEBUG') && CLARITY_DEBUG) {
+      do_action('qm/info', 'Debug mode enabled, skipping remote definitions update');
+      return false;
+    }
+    
     do_action('qm/info', 'Attempting to fetch remote definitions');
     
     $response = wp_remote_get($this->definitions_url);
