@@ -16,6 +16,7 @@
 
 define('WP_CLARITY_PATH', trailingslashit(plugin_dir_path(__FILE__)));
 define('CLARITY_AD_BLOCKER_ENABLED', true);
+define('WP_CLARITY_VERSION', '1.4');
 
 /**
  * Class WP_Clarity
@@ -27,6 +28,13 @@ class WP_Clarity {
    * @var string
    */
   private $option_name = 'wp_clarity_definitions';
+
+  /**
+   * Option name for storing the plugin version
+   *
+   * @var string
+   */
+  private $version_option_name = 'wp_clarity_version';
 
   /**
    * CRON hook name
@@ -57,12 +65,55 @@ class WP_Clarity {
 
     // CRON event handler
     add_action($this->cron_hook, [$this, 'update_definitions_from_remote']);
+    
+    // Plugin update hook
+    add_action('upgrader_process_complete', [$this, 'handle_plugin_update'], 10, 2);
 
     // Admin-related hooks
     add_filter('plugin_action_links_clarity-ad-blocker/clarity-ad-blocker.php', [$this, 'filter_plugin_action_links']);
     
     // WP-CLI integration
     add_action('cli_init', [$this, 'cli_init']);
+  }
+
+  /**
+   * Handle plugin update
+   *
+   * @param object $upgrader_object WP_Upgrader instance
+   * @param array $options Upgrade options
+   * @return void
+   */
+  function handle_plugin_update($upgrader_object, $options) {
+    // Only proceed if this is a plugin update
+    if ($options['action'] !== 'update' || $options['type'] !== 'plugin') {
+      return;
+    }
+    
+    // Check if our plugin was updated
+    if (!isset($options['plugins']) || !in_array(plugin_basename(__FILE__), $options['plugins'])) {
+      return;
+    }
+    
+    // Log the update
+    do_action('qm/info', 'Clarity plugin update detected');
+    
+    // Schedule the CRON job if not already scheduled
+    if (!wp_next_scheduled($this->cron_hook)) {
+      wp_schedule_event(time(), 'daily', $this->cron_hook);
+      do_action('qm/info', 'Scheduled definitions update CRON job after plugin update');
+    }
+    
+    // Get the current stored version
+    $stored_version = get_option($this->version_option_name, '0');
+    
+    // If updating from a version before 1.4, trigger an initial definition fetch
+    if (version_compare($stored_version, '1.4', '<')) {
+      do_action('qm/info', 'First update to v1.4+, fetching initial remote definitions');
+      $this->update_definitions_from_remote();
+    }
+    
+    // Update the stored version
+    update_option($this->version_option_name, WP_CLARITY_VERSION);
   }
 
   /**
@@ -78,6 +129,9 @@ class WP_Clarity {
     
     // Force an initial update from remote
     $this->update_definitions_from_remote();
+    
+    // Store the current version
+    update_option($this->version_option_name, WP_CLARITY_VERSION);
   }
 
   /**
@@ -186,24 +240,6 @@ class WP_Clarity {
   }
 
   /**
-   * Hides stuff via CSS in the admin header
-   * 
-   * @return void
-   */
-  function admin_head() {
-    $selectors = $this->getDefinitions();
-    if (strlen($selectors) === 0) return;
-?>
-    <!-- Clarity - Ad blocker for WordPress -->
-    <style type="text/css">
-      <?php echo $selectors; ?> {
-        display: none !important;
-      }
-    </style>
-<?php
-  }
-
-  /**
    * Special handling for plugins that can't rely on CSS rules
    *
    * @return void
@@ -229,6 +265,24 @@ class WP_Clarity {
     if (!defined('METASLIDER_DISABLE_SEASONAL_NOTICES')) {
       define('METASLIDER_DISABLE_SEASONAL_NOTICES', true);
     } 
+  }
+
+  /**
+   * Hides stuff via CSS in the admin header
+   * 
+   * @return void
+   */
+  function admin_head() {
+    $selectors = $this->getDefinitions();
+    if (strlen($selectors) === 0) return;
+?>
+    <!-- Clarity - Ad blocker for WordPress -->
+    <style type="text/css">
+      <?php echo $selectors; ?> {
+        display: none !important;
+      }
+    </style>
+<?php
   }
 
   /**
