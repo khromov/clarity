@@ -276,3 +276,6 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- Product Feed Manager for WooCommerce
 div#rexfeed_deal_notification
+
+-- Elementor
+.e-notice--cta.e-notice--dismissible[data-notice_id="plugin_image_optimization"]
