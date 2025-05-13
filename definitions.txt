@@ -323,3 +323,10 @@ div.notice[data-dismissible="ao-nopagecache-forever"]
 
 -- AIOSEO
 .aioseo-review-plugin-cta
+
+-- Magical Addons For Elementor
+.magical-welcome-tabs
+
+-- Royal Elementor Addons
+.wpr-rating-notice
+.wpr-plugin-update-notice
