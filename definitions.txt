@@ -282,3 +282,8 @@ div#rexfeed_deal_notification
 
 -- Happy Elementor Addons
 .notice.ha-review-notice
+
+-- Ibtana
+[data-ive-admin-notice-id]
+.ive-get-started-sidebar-theme
+#ive_go_pro_template_metabox
