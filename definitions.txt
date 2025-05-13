@@ -287,3 +287,7 @@ div#rexfeed_deal_notification
 [data-ive-admin-notice-id]
 .ive-get-started-sidebar-theme
 #ive_go_pro_template_metabox
+
+-- Shortpixel
+.shortpixel-offer
+.shortpixel-notice
