@@ -308,3 +308,9 @@ div.notice[data-dismissible="ao-nopagecache-forever"]
 -- PublishPress
 .pp-version-notice-bold-purple
 .advertisement-box-content
+
+-- Easy Updates Manager
+.updraft-ad-container
+
+-- Custom Sidebars
+.custom-sidebars-box.custom-sidebars-checkup
