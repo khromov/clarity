@@ -271,6 +271,7 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- Themeisle
 .themeisle-sale
+[id$="_review_flag"]
 
 -- WC Product search
 .updated.wps-rating
@@ -295,3 +296,4 @@ div#rexfeed_deal_notification
 
 -- Post Types Order
 #cpto #cpt_info_box
+
