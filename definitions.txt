@@ -304,3 +304,7 @@ div.notice[data-dismissible="ao-nopagecache-forever"]
 
 -- Redis Object Cache
 #rediscache .sidebar-column
+
+-- PublishPress
+.pp-version-notice-bold-purple
+.advertisement-box-content
