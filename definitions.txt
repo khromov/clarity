@@ -77,6 +77,7 @@ div[data-dismissible="notice-owa-sale-forever"]
 
 -- Themeisle Companion
 .neve-notice-upsell
+#ti-optml-notice
 
 -- Pagelayer Pro promo
 #pagelayer_promo
