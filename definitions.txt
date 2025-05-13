@@ -291,3 +291,6 @@ div#rexfeed_deal_notification
 -- Shortpixel
 .shortpixel-offer
 .shortpixel-notice
+
+-- Post Types Order
+#cpto #cpt_info_box
