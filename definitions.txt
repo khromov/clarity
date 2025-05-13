@@ -263,3 +263,7 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- Ovation Elements
 .notice.is-dismissible.ova-elems
+
+-- App For Cloudflare
+.notice.notice-info.cf-app-pro
+#app-for-cf_sidebar .postbox.pro
