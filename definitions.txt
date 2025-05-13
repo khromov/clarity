@@ -297,3 +297,6 @@ div#rexfeed_deal_notification
 -- Post Types Order
 #cpto #cpt_info_box
 
+-- Autoptimize
+div.notice[data-dismissible="ao-img-opt-plug-123"]
+div.notice[data-dismissible="ao-nopagecache-forever"]
