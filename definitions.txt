@@ -257,3 +257,9 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- Image Hover Effects for Elementor
 .oxi-image-notice
+
+-- Simple Link Directory
+.qc-review-notice
+
+-- Ovation Elements
+.notice.is-dismissible.ova-elems
