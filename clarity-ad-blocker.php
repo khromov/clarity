@@ -100,19 +100,19 @@ class WP_Clarity {
 	function getDefinitions( $force_refresh = false ) {
 		// If debug mode is enabled, always use local definitions
 		if ( defined( 'CLARITY_DEBUG' ) && CLARITY_DEBUG ) {
-			do_action( 'qm/info', 'Debug mode enabled, using local definitions' );
+			do_action( 'qm/info', __( 'Debug mode enabled, using local definitions', 'clarity-ad-blocker' ) );
 			return $this->getLocalDefinitions();
 		}
 
 		$cached = get_option( $this->option_name );
 
 		if ( $force_refresh || $cached === false ) {
-			do_action( 'qm/info', 'No cached definitions found or refresh forced' );
-			do_action( 'qm/info', 'Using local definitions as fallback' );
+			do_action( 'qm/info', __( 'No cached definitions found or refresh forced', 'clarity-ad-blocker' ) );
+			do_action( 'qm/info', __( 'Using local definitions as fallback', 'clarity-ad-blocker' ) );
 			return $this->getLocalDefinitions();
 		}
 
-		do_action( 'qm/info', 'Using cached definitions from database' );
+		do_action( 'qm/info', __( 'Using cached definitions from database', 'clarity-ad-blocker' ) );
 		return $cached;
 	}
 
@@ -120,7 +120,7 @@ class WP_Clarity {
 	 * Get definitions from local file
 	 */
 	function getLocalDefinitions() {
-		do_action( 'qm/info', 'Loading definitions from local text file' );
+		do_action( 'qm/info', __( 'Loading definitions from local text file', 'clarity-ad-blocker' ) );
 
 		$content = file_get_contents( WP_CLARITY_PATH . 'definitions.txt' );
 		return $this->process_definitions_text( $content );
@@ -132,11 +132,11 @@ class WP_Clarity {
 	function update_definitions_from_remote() {
 		// Don't update from remote in debug mode
 		if ( defined( 'CLARITY_DEBUG' ) && CLARITY_DEBUG ) {
-			do_action( 'qm/info', 'Debug mode enabled, skipping remote definitions update' );
+			do_action( 'qm/info', __( 'Debug mode enabled, skipping remote definitions update', 'clarity-ad-blocker' ) );
 			return false;
 		}
 
-		do_action( 'qm/info', 'Attempting to fetch remote definitions' );
+		do_action( 'qm/info', __( 'Attempting to fetch remote definitions', 'clarity-ad-blocker' ) );
 
 		$response = wp_remote_get( $this->definitions_url );
 
@@ -148,14 +148,14 @@ class WP_Clarity {
 		$content = wp_remote_retrieve_body( $response );
 
 		if ( empty( $content ) ) {
-			do_action( 'qm/info', 'Remote definitions were empty' );
+			do_action( 'qm/info', __( 'Remote definitions were empty', 'clarity-ad-blocker' ) );
 			return false;
 		}
 
 		$processed_definitions = $this->process_definitions_text( $content );
 		update_option( $this->option_name, $processed_definitions, false );
 
-		do_action( 'qm/info', 'Updated remote definitions successfully' );
+		do_action( 'qm/info', __( 'Updated remote definitions successfully', 'clarity-ad-blocker' ) );
 
 		return true;
 	}
@@ -194,7 +194,7 @@ class WP_Clarity {
 		// Check if CRON job is scheduled and schedule it if not
 		if ( ! wp_next_scheduled( $this->cron_hook ) ) {
 			wp_schedule_event( time(), 'daily', $this->cron_hook );
-			do_action( 'qm/info', 'Scheduled definitions update CRON job in plugins_loaded' );
+			do_action( 'qm/info', __( 'Scheduled definitions update CRON job in plugins_loaded', 'clarity-ad-blocker' ) );
 		}
 	}
 
@@ -241,9 +241,9 @@ class WP_Clarity {
 		$result = $this->update_definitions_from_remote();
 
 		if ( $result ) {
-			WP_CLI::success( 'Remote definitions updated successfully' );
+			WP_CLI::success( __( 'Remote definitions updated successfully', 'clarity-ad-blocker' ) );
 		} else {
-			WP_CLI::warning( 'Failed to update remote definitions, using local definitions' );
+			WP_CLI::warning( __( 'Failed to update remote definitions, using local definitions', 'clarity-ad-blocker' ) );
 		}
 	}
 
