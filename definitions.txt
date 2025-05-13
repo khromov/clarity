@@ -301,3 +301,6 @@ div#rexfeed_deal_notification
 div.notice[data-dismissible="ao-img-opt-plug-123"]
 div.notice[data-dismissible="ao-nopagecache-forever"]
 #autoptimize_admin_feed *
+
+-- Redis Object Cache
+#rediscache .sidebar-column
