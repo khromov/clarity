@@ -330,3 +330,6 @@ div.notice[data-dismissible="ao-nopagecache-forever"]
 -- Royal Elementor Addons
 .wpr-rating-notice
 .wpr-plugin-update-notice
+
+-- Mesmerize
+.extendthemes-remote-notification
