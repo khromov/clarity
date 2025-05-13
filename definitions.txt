@@ -279,3 +279,6 @@ div#rexfeed_deal_notification
 
 -- Elementor
 .e-notice--cta.e-notice--dismissible[data-notice_id="plugin_image_optimization"]
+
+-- Happy Elementor Addons
+.notice.ha-review-notice
