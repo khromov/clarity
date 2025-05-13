@@ -270,3 +270,6 @@ div.notice[data-dismissible="notice-owa-upgrade-forever"]
 
 -- Themeisle
 .themeisle-sale
+
+-- WC Product search
+.updated.wps-rating
