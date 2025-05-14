@@ -334,3 +334,6 @@ div.notice[data-dismissible="ao-nopagecache-forever"]
 
 -- Mesmerize
 .extendthemes-remote-notification
+
+-- Activity log
+.aal-table-promotion-row
