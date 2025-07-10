@@ -337,3 +337,6 @@ div.notice[data-dismissible="ao-nopagecache-forever"]
 
 -- Activity log
 .aal-table-promotion-row
+
+-- WPS
+.wps-autopromo
