@@ -107,10 +107,15 @@ gulp.task('html', function () {
 });
 
 gulp.task('sass', function () {
+  const compile = sass({
+    importer: [cssImporter]
+  });
+  // Keep the dev server running on Sass errors, but let them fail `npm run build`
+  if (!process.argv.includes('build')) {
+    compile.on('error', sass.logError);
+  }
   return gulp.src(paths.scss.themeScss)
-    .pipe(sass({
-      importer: [cssImporter]
-    }).on('error', sass.logError))
+    .pipe(compile)
     .pipe(autoprefixer())
     .pipe(gulp.dest(paths.dist.css))
     .pipe(browserSync.stream({
