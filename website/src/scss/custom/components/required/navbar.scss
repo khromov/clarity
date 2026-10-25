@@ -1,0 +1,169 @@
+// 
+// 
+// navbar.scss
+//
+//
+
+.navbar{
+    z-index: $zindex-sticky;
+    width: 100%;
+    &[data-overlay]{
+        position: absolute;
+    }
+    &[data-sticky="top"]{
+        transition: $transition-base;
+        will-change: background-color;
+        &.scrolled{
+            z-index: $zindex-sticky+1;
+        }
+    }
+}
+
+.navbar-container{
+    position: relative;
+}
+
+@include media-breakpoint-down(md) {
+    .navbar {
+        .dropdown-grid-menu {
+            border-left: 2px solid $border-color;
+            padding: $spacer/4 0;
+
+            [data-toggle="dropdown-grid"] {
+                &.dropdown-item {
+                    padding-left: $spacer;
+
+                    &:after {
+                        transform: rotateZ(90deg);
+                    }
+                }
+            }
+
+            .dropdown-grid-menu {
+                margin-left: $spacer;
+            }
+        }
+
+        .dropdown-toggle {
+
+            &.arrow-bottom,
+            &.arrow-top {
+                &:before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .navbar {
+        padding-top: $navbar-padding-y/2;
+        padding-bottom: $navbar-padding-y/2;
+    }
+}
+
+@include media-breakpoint-down(lg){
+    .navbar-expand-lg{
+        .navbar-nav{
+            .nav-link{
+                padding-left: $spacer/2;
+                padding-right: $spacer/2;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .navbar-nav {
+        >.nav-item {
+            font-size: $font-size-lg;
+        }
+    }
+}
+
+.navbar-dark {
+    .navbar-brand-dynamic-color,
+    .navbar-toggler {
+        svg {
+            [stroke]:not([stroke="none"]) {
+                stroke: $white;
+            }
+
+            [fill]:not([fill="none"]) {
+                fill: $white;
+            }
+        }
+    }
+}
+
+.navbar-light {
+    .dropdown-toggle {
+        &:after {
+            @include dropdown-arrow-image($gray-900, 90deg);
+        }
+    }
+}
+
+.navbar-toggler {
+    border: none;
+    position: relative;
+
+    svg {
+        transition: $transition-base;
+    }
+
+    &[aria-expanded="true"] {
+        .navbar-toggler-open {
+            opacity: 0;
+            transform: scale(.5) translateX(-100%);
+        }
+    }
+
+    &[aria-expanded="false"] {
+        .navbar-toggler-close {
+            opacity: 0;
+            transform: scale(.5) translateX(100%);
+        }
+    }
+}
+
+.navbar-toggler-close {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+// Sticky Nav
+
+.navbar{
+    &.scrolled, &.navbar-toggled-show{
+        background-color: $white;
+        &.navbar-dark{
+            .navbar-nav{
+                .nav-link{
+                    color: $navbar-light-color;
+                    &:hover{
+                        color: $navbar-light-hover-color;
+                    }
+                    &.dropdown-toggle{
+                        &:after{
+                            @include dropdown-arrow-image($gray-900, 90deg);
+                        }
+                    }
+                }
+            }
+            .navbar-brand-dynamic-color, .navbar-toggler{
+                svg{
+                    [stroke]:not([stroke="none"]) {
+                        stroke: $gray-900;
+                    }
+        
+                    [fill]:not([fill="none"]) {
+                        fill: $gray-900;
+                    }
+                }
+            }
+        }
+    }
+}

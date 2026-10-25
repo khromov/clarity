@@ -1,0 +1,18 @@
+name: 'Jumpstart Bootstrap Theme'
+shortName: Jumpstart
+theme_version: 2.0.0
+bootstrap_version: 4.3.1
+domain: jumpstart
+purchase_link: 'http://jumpstart.mediumra.re'
+minify_scripts: true
+scripts:
+    external:
+        - aos
+        - jquery
+        - scrollmonitor
+        - '@tanem/svg-injector'
+    globals:
+        aos: AOS
+        jquery: jQuery
+        scrollmonitor: scrollMonitor
+        '@tanem/svg-injector': SVGInjector

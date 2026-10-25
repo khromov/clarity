@@ -1,0 +1,29 @@
+// 
+// 
+// prism.scss
+//
+//
+
+@import "CSS:../../components/plugins/prism";
+
+pre[class*='language-'], code[class*='language-']{
+  background: $secondary;
+  color: $body-color;
+  border: none;
+  font-weight: 400;
+}
+
+article{
+  pre[class*='language-']{
+    margin: 1rem 0;
+    border-radius: $border-radius;
+  }
+}
+
+pre[class*='language-']{
+  padding: $spacer;
+}
+
+.token.property, .token.tag, .token.boolean, .token.number, .token.constant, .token.symbol, .token.deleted{
+  color: $code-color;
+}

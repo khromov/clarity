@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"> 
+    <title>Clarity - Ad, banner and upsell blocker for WordPress</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="wordpress, ad, adblocker">
+    <meta name="description" content="Clarity is a lightweight WordPress plugin that works just like your favourite browser ad blocker. It surgically removes ads, upsells and other annoying notifications such banners asking to track you.">
+
+    <meta property="og:title" content="Clarity - Ad, banner and upsell blocker for WordPress">
+    <meta property="og:url" content="https://khromov.github.io/clarity/">
+    <meta property="og:image" content="https://khromov.github.io/clarity/assets/img/clarity-preview.jpg?1">
+    <meta property="og:description" content="Clarity is a lightweight WordPress plugin that works just like your favourite browser ad blocker. It surgically removes ads, upsells and other annoying notifications such banners asking to track you.">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary">
+    <meta property="twitter:title" content="Clarity - Ad, banner and upsell blocker for WordPress">
+    <meta name="twitter:image" content="https://khromov.github.io/clarity/assets/img/clarity-preview.jpg?1">
+    <meta property="twitter:description" content="Clarity is a lightweight WordPress plugin that works just like your favourite browser ad blocker. It surgically removes ads, upsells and other annoying notifications such banners asking to track you.">
+
+    <!-- End loading animation -->
+    <link href="assets/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,400i,600,700&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="image" href="assets/img/wp-admin.png" />
+    <link rel="preload" as="image" href="assets/img/wp-admin-after.png" />
+  </head>
+
+  <body>
+    <div class="navbar-container bg-primary-3">
+      <nav class="navbar navbar-expand-lg navbar-dark" data-sticky="top">
+        <div class="container">
+          <a class="navbar-brand navbar-brand-dynamic-color fade-page" href="./">
+            <img alt="Clarity logo" data-inject-svg src="assets/img/clarity-website.svg" style="max-width: 200px;">
+          </a>
+        </div>
+      </nav>
+    </div>
+
+    <section class="bg-primary-3 text-white pb-0 o-hidden">
+      <div class="container">
+        <div class="row justify-content-between align-items-center">
+          <div class="col-xl-5 col-lg-6 text-center text-lg-left mb-4 mb-md-5 mb-lg-0" data-aos="fade-right">
+            <h1 class="display-3">Ads? No thanks!</h1>
+            <p class="lead">Ads, upsells and analytics banners have been running rampant in our WordPress dashboards for too long. It's time to make them go away, once and for all.</p>
+            <a href="https://wordpress.org/plugins/clarity-ad-blocker/" target="_blank" class="btn btn-lg btn-primary">Download from WordPress.org</a>
+          </div>
+          <div class="col" data-aos="fade-left" data-aos-delay="250">
+            <img id="comparison-image" src="assets/img/wp-admin.png" alt="Screenshot" class="img-fluid rounded shadow-lg">
+            <ul class="nav nav-pills pt-3" id="myTab-2" role="tablist" style="justify-content: center;">
+              <li class="" onclick="toggleBefore(event, this)" style="cursor: pointer;">
+                <a id="comparison-before" class="nav-link bg-primary-2" id="home-tab-2">Before Clarity</a>
+              </li>
+              <li class="ml-2" onclick="toggleAfter(event, this)" style="cursor: pointer;">
+                <a id="comparison-after" class="nav-link bg-body-color" id="profile-tab-2">After Clarity</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="w-50 h-50 bottom right position-absolute">
+        <div class="blob blob-2 bg-gradient w-100 h-100"></div>
+      </div>
+      <div class="w-50 h-50 bottom right position-absolute">
+        <div class="blob blob-4 bg-white opacity-10 w-100 h-100"></div>
+      </div>
+      <div class="divider divider-bottom bg-light"></div>
+    </section>
+
+    <section class="bg-light o-hidden">
+      <div class="container">
+        <div class="row section-title justify-content-center text-center">
+          <div class="col-md-9 col-lg-8 col-xl-7">
+            <h2 class="display-4">Why use Clarity?</h2>
+           <div class="lead">Clarity is a lightweight WordPress plugin that works just like your favourite browser ad blocker. It surgically removes ads, upsells and other annoying notifications such banners asking to track you.</div>
+          </div>
+        </div>
+        <div class="row align-items-center justify-content-around">
+          <div class="col-md-9 col-lg-5" data-aos="fade-in">
+            <img src="assets/img/pixeltrue-meditation-1.svg" alt="Image" class="img-fluid"> 
+          </div>
+          <div class="col-md-9 col-lg-6 col-xl-5 mt-4 mt-md-5 mt-lg-0">
+            <ol class="list-unstyled p-0">
+              <li class="d-flex align-items-start my-4 my-md-5">
+                <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-primary-2">
+                  <div class="position-absolute text-white h5 mb-0">
+                    <img class="icon bg-light icon-sm" src="assets/img/icons/interface/icon-map-marker-2.svg" alt="Heart icon" data-inject-svg />
+                  </div>
+                </div>
+                <div class="ml-3 ml-md-4">
+                  <h4>For agencies</h4>
+                  <p>
+                    Creating sites for clients? Make it easier for them to use the sites you deliver and avoid your clients becoming confused about buying "premium" features that they might not need.
+                  </p>
+                </div>
+              </li>
+              <li class="d-flex align-items-start my-4 my-md-5">
+                <div class="rounded-circle p-3 p-sm-4 d-flex align-items-center justify-content-center bg-primary-2">
+                  <div class="position-absolute text-white h5 mb-0">
+                    <img class="icon bg-light icon-sm" src="assets/img/icons/theme/general/user.svg" alt="Heart icon" data-inject-svg />
+                  </div>
+                </div>
+                <div class="ml-3 ml-md-4">
+                  <h4>For end users</h4>
+                  <p>
+                    Focus on what's important on your site - the content. No ads or other distractions.
+                  </p>
+                </div>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white">
+      <div class="container">
+        <div class="row section-title justify-content-center text-center">
+          <div class="col-md-9 col-lg-8 col-xl-7">
+            <h3 class="display-4">For plugin and theme developers</h3>
+            <div class="lead">Do you develop plugins or themes? You can easily respect the wishes of your users by checking if they are running Clarity.</div>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center mt-md-n4">
+          <div class="col-auto">
+            <pre class="language-php"><code class="language-php">if(defined(&#x27;CLARITY_AD_BLOCKER_ENABLED&#x27;) &#x26;&#x26; CLARITY_AD_BLOCKER_ENABLED) {
+  // You should not serve ads or upsells to this user.
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pb-0 bg-light">
+      <div class="container">
+        <div class="row section-title justify-content-center text-center">
+          <div class="col-md-9 col-lg-8 col-xl-7">
+            <h3 class="display-4">Get Clarity</h3>
+            <div class="lead">Download Clarity today. Free forever.</div>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center">
+          <div class="col-auto">
+            <a href="https://wordpress.org/plugins/clarity-ad-blocker/" target="_blank" class="btn btn-primary btn-lg">Download from WordPress.org</a>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center mt-4">
+          <div class="col-auto">
+            <a href="https://github.com/khromov/clarity/blob/master/acceptable-ads-policy.md" target="_blank" class="btn btn-primary btn-lg btn-secondary">Acceptable ads policy (draft)</a>
+          </div>
+        </div>
+        <div class="row justify-content-center text-center mt-4">
+          <div class="col-auto">
+            <a href="https://github.com/khromov/clarity/issues/new?assignees=khromov&labels=filter-request&template=1-report-notification.md&title=Plugin%2FTheme+name%3A+" target="_blank" class="btn btn-primary btn-lg btn-secondary">Report an unwanted notification</a>
+          </div>
+        </div>
+      </div>
+      <div class="divider divider-bottom bg-primary-3 mt-5"></div>
+    </section>
+
+    <footer class="bg-primary-3 text-white links-white pb-4 footer-1">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <hr>
+          </div>
+        </div>
+        <div class="row flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-between text-center text-lg-left">
+          <div class="col-auto">
+            <div class="d-flex flex-column flex-sm-row align-items-center text-small">
+              <div class="text-muted">
+                Lotus flower icon by Paolo ( via.fabbri43 ) | Uses images from Icons8
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+        var toggleBefore = function(event, element) {
+          event.preventDefault();
+          document.getElementById('comparison-before').classList.add('bg-primary-2');
+          document.getElementById('comparison-before').classList.remove('bg-body-color');
+
+          document.getElementById('comparison-after').classList.add('bg-body-color');
+          document.getElementById('comparison-after').classList.remove('bg-primary-2');
+          document.getElementById('comparison-image').setAttribute('src', 'assets/img/wp-admin.png');
+        }
+
+        var toggleAfter = function(event, element) {
+          event.preventDefault();
+          document.getElementById('comparison-before').classList.add('bg-body-color');
+          document.getElementById('comparison-before').classList.remove('bg-primary-2');
+
+          document.getElementById('comparison-after').classList.add('bg-primary-2');
+          document.getElementById('comparison-after').classList.remove('bg-body-color');
+
+          document.getElementById('comparison-image').setAttribute('src', 'assets/img/wp-admin-after.png');
+        }
+    </script>
+
+    <!-- Vendor scripts (each must stay in sync with src/js/mrare/index.js and theme.yml) -->
+    <script type="text/javascript" src="assets/js/jquery.min.js"></script>
+    <!-- AOS (Animate On Scroll - animates elements into view while scrolling down) -->
+    <script type="text/javascript" src="assets/js/aos.js"></script>
+    <!-- ScrollMonitor (used by the sticky navbar) -->
+    <script type="text/javascript" src="assets/js/scrollMonitor.js"></script>
+    <!-- SVGInjector (replaces img tags with SVG code to allow easy inclusion of SVGs with the benefit of inheriting colors and styles)-->
+    <script type="text/javascript" src="assets/js/svg-injector.umd.production.js"></script>
+    <!-- Required theme scripts (Do not remove) -->
+    <script type="text/javascript" src="assets/js/theme.js"></script>
+
+   <script async defer data-website-id="218baa4e-b047-4226-9d82-3a4a779dbc4f" src="https://u.khromov.se/u.js"></script>
+  </body>
+
+</html>

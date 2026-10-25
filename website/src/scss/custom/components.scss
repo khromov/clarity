@@ -1,0 +1,34 @@
+// 
+// 
+// components.scss
+//
+//
+
+
+// Required Components
+//
+// These partials are essential for theme styling
+
+@import "components/required/buttons.scss";
+@import "components/required/colors.scss";
+@import "components/required/containers.scss";
+@import "components/required/footers.scss";
+@import "components/required/icons.scss";
+@import "components/required/navbar.scss";
+@import "components/required/navs.scss";
+@import "components/required/sections.scss";
+@import "components/required/svg.scss";
+@import "components/required/typography.scss";
+@import "components/required/utilities.scss";
+
+
+// Optional Components
+//
+// These partials can be included and excluded as required
+
+@import "CSS:components/plugins/aos";
+@import "components/optional/blobs";
+@import "components/optional/dividers";
+@import "components/optional/ie-fixes";
+@import "components/optional/page-transitions";
+@import "components/optional/prism";

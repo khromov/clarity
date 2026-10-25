@@ -1,0 +1,7 @@
+# LICENSE #
+
+Jumpstart - SaaS, App and Software Landing page UI Kit by Medium Rare
+
+Use of this theme is subject to the license terms set out on Themeforest:
+
+https://themeforest.net/licenses/standard

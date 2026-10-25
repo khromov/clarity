@@ -1,0 +1,42 @@
+// 
+// 
+// ie-fixes.scss
+//
+// Fixes reported bugs associated with Flexbox for IE11 -- Exlucde this file if IE11 support is not required
+
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) { 
+  body{
+    .blob{ 
+      display: none;
+    }
+    .row{ 
+      flex-grow: 1;
+    }
+    .card{
+      display: block;
+    }
+    .icon{
+      width: $spacer*2;
+      &.icon-xs{
+          width: $spacer;
+      }
+      &.icon-sm{
+          width: $spacer*1.5;
+      }
+      &.icon-lg{
+          width: $spacer*4.5;
+      }
+      &.icon-xl{
+          width: $spacer*6;
+      }
+    }
+    .flex-wrap{
+      > div{
+        width: 100%;
+      }
+    }
+    a[role="button"]:not(.dropdown-toggle):not(.dropdown-item){
+      display: block;
+    }
+  } 
+}

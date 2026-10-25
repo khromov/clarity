@@ -1,0 +1,261 @@
+// 
+// 
+// utilities.scss
+//
+//
+
+// Arrows
+// Arrow classes add a small horizontally aligned arrow to the top or bottom of an element
+
+$arrow-size: 10px;
+
+.arrow-bottom,
+.arrow-top {
+    &:before {
+        content: '';
+        width: $arrow-size;
+        height: $arrow-size;
+        background: $white;
+        border-left: $dropdown-border-width $dropdown-border-color solid;
+        border-top: $dropdown-border-width $dropdown-border-color solid;
+        display: block;
+        transform: translateX(-50%) rotateZ(225deg);
+        position: absolute;
+        bottom: -($arrow-size/2);
+        left: 50%;
+        z-index: $zindex-dropdown+1;
+    }
+}
+
+.arrow-top {
+    &:before {
+        bottom: auto;
+        top: -($arrow-size/2);
+        transform: translateX(-50%) rotateZ(45deg);
+    }
+}
+
+.dropdown-toggle {
+    &.arrow-bottom {
+        &:before {
+            bottom: -($arrow-size+($arrow-size*.2));
+            transform: translateX(-50%) rotateZ(45deg);
+        }
+
+        +.dropdown-menu {
+            margin-top: $arrow-size*.7;
+        }
+    }
+
+    &.arrow-top {
+        &:before {
+            bottom: auto;
+            top: -($arrow-size+($arrow-size*.2));
+            transform: translateX(-50%) rotateZ(225deg);
+        }
+
+        +.dropdown-menu {
+            margin-bottom: $arrow-size*.7;
+        }
+    }
+}
+
+.dropdown,
+.dropup {
+    .dropdown-toggle {
+        &[aria-expanded="false"] {
+            &:before {
+                display: none;
+            }
+        }
+    }
+}
+
+// Overflow
+
+.o-hidden{
+    overflow: hidden;
+}
+
+// Sticky Top
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+        .sticky-#{$breakpoint}-top{
+            position: sticky !important;
+            top: 0;
+            z-index: $zindex-sticky;
+        }
+        [class*='sticky-#{$breakpoint}'][class*='-top']{
+            &[class*='col']{
+                top: $spacer*1.5;
+            }
+        }
+    }
+}
+
+// Background Images
+
+.bg-image{
+    &:not([class*='absolute']){
+      position: absolute;
+    }
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    + .card-body{
+      position: relative;
+      z-index: 1;
+    }
+  }
+  
+  img.bg-image{
+    object-fit: cover;
+  }
+
+// Opacity
+//
+// Control an element's opacity using the class .opacity-# element with value of 0 - 100
+
+.opacity-0 {
+    opacity: 0;
+  }
+  
+  @for $i from 1 through 9 {
+    $opacity: ($i / 10);
+    .opacity-#{($i*10)} {
+      opacity: $opacity;
+    }
+  }
+
+
+// Transforms
+
+.transform-flip-x{
+    transform: scaleY(-1);
+}
+
+.transform-flip-y{
+    transform: scaleX(-1);
+}
+
+
+// Height
+//
+// Control an elements min-height in vh units using the class .height-# with a value of 0 - 90
+
+.h-0 {
+    height: 0;
+  }
+  
+  @for $i from 1 through 9 {
+    $height: ($i * 10);
+    .min-vh-#{$height} {
+      min-height: #{$height}vh;
+    }
+  }
+  
+  @include media-breakpoint-up(md){
+    @for $i from 1 through 10 {
+      $height: ($i * 10);
+      .min-vh-md-#{$height} {
+        min-height: #{$height}vh;
+      }
+    }
+  }
+  
+  @include media-breakpoint-up(lg){
+    @for $i from 1 through 10 {
+      $height: ($i * 10);
+      .min-vh-lg-#{$height} {
+        min-height: #{$height}vh;
+      }
+    }
+  }
+
+  
+// Height
+
+img{
+    &.h-100{
+        object-fit: cover;
+    }
+    &.flex-fill{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+}
+
+.img-fluid{
+  &.position-relative{
+    z-index: 1;
+  }
+}
+
+// Width
+
+@include media-breakpoint-up(lg){
+  .w-lg-100{
+    width: 100%;
+  }
+}
+
+// Hover Effects
+
+[class*='hover-']{
+  transition: $transition-base;
+}
+
+.hover-fade-out{
+    &:hover{
+        opacity: .75;
+    }
+}
+
+.hover-box-shadow{
+  &:hover{
+    box-shadow: $box-shadow;
+    transform: translateY(-$spacer/2);
+  }
+}
+
+// Alignment
+
+.top{
+  top: 0;
+  bottom: auto;
+}
+
+.bottom{
+  top: auto;
+  bottom: 0;
+}
+
+.left{
+  right: auto;
+  left: 0;
+}
+
+.right{
+  left: auto;
+  right: 0;
+}
+
+// Borders
+
+.border-thick{
+  border-width: $border-width*4 !important;
+}
+
+.rounded-lg{
+  border-radius: 200rem !important;
+}
+
+@include media-breakpoint-up(lg){
+  .border-lg-right{
+    border-right: $border-width solid $border-color;
+  }
+}

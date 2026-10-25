@@ -1,0 +1,46 @@
+// 
+// 
+// sections.scss
+//
+//
+
+$default-section-padding: 3.75rem;
+$default-section-padding-md: $default-section-padding*1.6;
+$default-section-padding-lg: $default-section-padding*2;
+
+section {
+    position: relative;
+    padding: $default-section-padding 0;
+}
+
+@include media-breakpoint-up(md) {
+    section {
+        padding: $default-section-padding-md 0;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    section {
+        padding: $default-section-padding-lg 0;
+    }
+}
+
+.section-title{
+    margin-bottom: $default-section-padding/1.5;
+}
+
+@include media-breakpoint-up(md) {
+    .section-title {
+        margin-bottom: $default-section-padding;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .section-title {
+        margin-bottom: $default-section-padding*1.25;
+    }
+}
+
+[data-overlay]{
+    position: relative;
+}

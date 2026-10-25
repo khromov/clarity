@@ -1,0 +1,229 @@
+// 
+// 
+// typography.scss
+//
+//
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a{
+    color: $primary;
+    &:hover{
+        color: darken($primary,10%);
+    }
+    &:focus{
+        outline: none;
+    }
+}
+
+.text-small {
+    font-size: .875rem;
+    line-height: 1.25rem;
+}
+
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    letter-spacing: -.02em;
+}
+
+@include media-breakpoint-up(md){
+    .display-1,
+    .display-2,
+    .display-3,
+    .display-4,
+    h1,
+    .h1 {
+        margin-bottom: 1.5rem;
+    }
+    h1,.h1{
+        line-height: 1.125;
+    }
+    p.lead {
+        margin-bottom: 1.5rem;
+    }
+}
+
+a {
+    font-weight: $font-weight-bold;
+    &.lead{
+        font-weight: $font-weight-bold;
+    }
+}
+
+mark{
+    color: inherit;
+    padding: 0;
+    background: none;
+    background-image: linear-gradient(120deg,rgba($warning,.4) 0%,rgba($warning,.4) 100%);
+    background-repeat: no-repeat;
+    background-size: 0% .3em;
+    background-position: 0 80%;
+    position: relative;
+    animation-delay: 1s;
+    &[data-aos="highlight-text"]{
+        &.aos-animate{
+            background-size: 100% .3em;
+        }
+    }
+    &:not([data-aos="highlight-text"]){
+        background-size: 100% .3em;
+    }
+}
+
+.text-primary{
+    mark{
+        background-image: linear-gradient(120deg,rgba($white,.25) 0%,rgba($white,.25) 100%);
+    }
+}
+
+@keyframes animateMark{
+    0%{ background-size: 0% .3em; }
+    100%{ background-size: 100% .3em; }
+}
+
+
+@include media-breakpoint-down(md){
+    .lead{
+        font-size: $font-size-base;
+        line-height: $line-height-base;
+        font-weight: $font-weight-normal;
+    }
+}
+
+.blockquote {
+    color: $primary;
+    border-left: 2px solid $gray-300;
+    padding-left: $spacer;
+}
+
+.blockquote-footer {
+    margin-top: $spacer/2;
+    color: $body-color;
+    @extend .text-small;
+}
+
+@include media-breakpoint-down(lg){
+    .blockquote{
+        font-size: $font-size-lg !important;
+    }
+}
+
+address{
+    p{
+        margin-bottom: 0;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .blockquote {
+        font-size: $h4-font-size;
+        padding-left: $spacer*3;
+    }
+}
+
+
+.text-white {
+
+    .display-1,
+    .display-2,
+    .display-3,
+    .display-4,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .blockquote,
+     {
+        color: $white;
+    }
+
+    a {
+        transition: $transition-base;
+    }
+
+    .text-muted {
+        color: rgba($white, .5) !important;
+    }
+    hr{
+        border-color: rgba($white,.1);
+    }
+}
+
+.text-dark {
+
+    .display-1,
+    .display-2,
+    .display-3,
+    .display-4,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6,
+    .blockquote,
+     {
+        color: $headings-color;
+    }
+
+    a {
+        transition: $transition-base;
+    }
+
+    .text-muted {
+        color: rgba($headings-color, .5) !important;
+    }
+    hr{
+        border-color: rgba($headings-color,.1);
+    }
+}
+
+figcaption{
+    margin-top: $spacer/2;
+    font-size: $font-size-sm;
+}
+
+figure{
+    text-align: center;
+}
+
+.links-white{
+    a{
+        &:not(:hover) {
+            color: rgba($white, .7);
+        }
+    
+        &:hover {
+            color: $white;
+        }
+    }
+}

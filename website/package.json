@@ -1,0 +1,55 @@
+{
+  "author": "Stanislav Khromov",
+  "private": true,
+  "name": "clarity-website",
+  "version": "1.0.0",
+  "description": "Landing page for the Clarity ad blocker WordPress plugin, built on the Jumpstart theme by Medium Rare",
+  "scripts": {
+    "start": "./node_modules/.bin/gulp --gulpfile src/gulpfile.js",
+    "build": "./node_modules/.bin/gulp build --gulpfile src/gulpfile.js"
+  },
+  "browserslist": "Safari > 10, Firefox > 40, Chrome > 40, ie >= 11",
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true,
+      "jquery": true
+    }
+  },
+  "license": "SEE LICENSE IN src/LICENSE.txt",
+  "homepage": "https://khromov.github.io/clarity/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khromov/clarity.git",
+    "directory": "website"
+  },
+  "dependencies": {
+    "@tanem/svg-injector": "~8.0.25",
+    "aos": "~2.3.4",
+    "jquery": "~3.4.1",
+    "scrollmonitor": "~1.2.4"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.7.5",
+    "@babel/plugin-proposal-object-rest-spread": "~7.7.4",
+    "@babel/preset-env": "~7.7.6",
+    "browser-sync": "~2.26.7",
+    "del": "~5.1.0",
+    "eslint": "~6.7.2",
+    "eslint-config-airbnb-base": "~14.0.0",
+    "eslint-plugin-import": "~2.18.0",
+    "gulp": "~4.0.2",
+    "gulp-autoprefixer": "~7.0.1",
+    "gulp-eslint": "~6.0.0",
+    "gulp-newer": "~1.4.0",
+    "gulp-sass": "~4.0.2",
+    "node-sass-css-importer": "~0.0.3",
+    "rollup": "~1.27.9",
+    "rollup-plugin-babel": "~4.3.2",
+    "rollup-plugin-commonjs": "~10.1.0",
+    "rollup-plugin-node-resolve": "~5.2.0",
+    "rollup-plugin-uglify": "~6.0.3",
+    "yamljs": "~0.3.0"
+  }
+}

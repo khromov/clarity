@@ -1,0 +1,31 @@
+// 
+// 
+// blobs.scss
+//
+//
+
+
+.blob{
+    position: absolute;
+    z-index: 0;
+    transform: scale(3);
+    &.blob-2{
+        mask-image: url('../img/blobs/blob-2.svg');
+    }
+    &.blob-4{
+        mask-image: url('../img/blobs/blob-4.svg');
+    }
+    mask-size: 100% 100%;
+    &.top{
+        top: -5vw;
+    }
+    &.bottom{
+        bottom: -5vw;
+    }
+    &.right{
+        right: -5vw;
+    }
+    &.left{
+        left: -5vw;
+    }
+}

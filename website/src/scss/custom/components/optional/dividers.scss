@@ -1,0 +1,76 @@
+// 
+// 
+// dividers.scss
+//
+//
+
+$divider-height: 5vw;
+
+.divider {
+    width: 100%;
+    position: relative;
+    height: $divider-height;
+    pointer-events: none;
+    mask-image: str-replace(url("data:image/svg+xml;utf8,%3csvg viewBox='0 0 100 100' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3e%3cpath d='M0,0 C16.6666667,66 33.3333333,98 50,98 C66.6666667,98 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z' fill='#{$white}'/%3e%3c/svg%3e"), "#", "%23");
+    mask-size: 100% 101%;
+    background: white;
+    &.divider-side{
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        height: 100%;
+        width: 5vw;
+        max-width: 72px;
+        mask-image: str-replace(url("data:image/svg+xml;utf8,%3csvg viewBox='0 0 100 100' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none'%3e%3cpath d='M0,0 C16.6666667,66 33.3333333,99 50,99 C66.6666667,99 83.3333333,66 100,0 L100,100 L0,100 L0,0 Z' fill='#{$white}' fill-rule='evenodd' transform='translate(50.000000, 50.000000) rotate(-90.000000) translate(-50.000000, -50.000000)' /%3e%3c/svg%3e"), "#", "%23");
+        mask-size: 100% 101%;
+        &:first-child{
+            left: -1px;
+        }
+        &:last-child{
+            right: -1px;
+        }
+    }
+    &.divider-bottom{
+        top: 1px;
+    }
+    &.divider-top{
+        bottom: 1px;
+    }
+}
+
+section {
+    >.divider-bottom {
+        margin-top: calc(#{$default-section-padding} - #{$divider-height});
+    }
+    >.divider-top {
+        margin-bottom: calc(#{$default-section-padding} - #{$divider-height});
+    }
+}
+
+@include media-breakpoint-up(md) {
+    section{
+        >.divider-bottom {
+            margin-top: calc(#{$default-section-padding-md} - #{$divider-height});
+        }
+        >.divider-top {
+            margin-bottom: calc(#{$default-section-padding-md} - #{$divider-height});
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    section{
+        >.divider-bottom {
+            margin-top: calc(#{$default-section-padding-lg} - #{$divider-height});
+        }
+        >.divider-top {
+            margin-bottom: calc(#{$default-section-padding-lg} - #{$divider-height});
+        }
+    }
+}
+
+.card{
+    .divider{
+        height: $spacer*1.5;
+    }
+}

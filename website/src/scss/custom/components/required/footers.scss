@@ -1,0 +1,29 @@
+// 
+// 
+// footers.scss
+//
+//
+
+footer {
+    padding: 3.75rem 0;
+}
+
+@include media-breakpoint-up(md) {
+    footer {
+        padding: 6rem 0;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    footer {
+        padding: 7.5rem 0;
+    }
+}
+
+@include media-breakpoint-up(md){
+    .footer-1{
+        hr{
+            margin-top: $spacer*6;
+        }
+    }
+}

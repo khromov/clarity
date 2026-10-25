@@ -1,0 +1,129 @@
+// 
+// 
+// buttons.scss
+//
+//
+
+
+@include media-breakpoint-down(sm){
+    .btn-lg{
+        font-size: $font-size-base;
+        padding: $btn-padding-y $btn-padding-x;
+    }
+}
+
+
+@each $color, $value in $theme-colors {
+    .btn-outline-#{$color} {
+        border-color: rgba($value,.25);
+        &:hover{
+            background-color: rgba($value,.2);
+            border-color: rgba(0,0,0,0);
+            color: $value;
+        }
+    }
+}
+
+.btn{
+    > span{
+        display: inline-block;
+    }
+    .icon{
+        height: 1.25rem;
+        &:last-child{
+            &:not(:only-child){
+                margin-right: -.5rem;
+                margin-left: .5rem;
+            }
+        }
+        &:first-child{
+            &:not(:only-child){
+                margin-left: -.5rem;
+                margin-right: .5rem;
+            }
+        }
+    }
+    &.rounded-circle{
+        padding: 0;
+        width: $spacer*3;
+        height: $spacer*3;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &.btn-sm{
+        &.rounded-circle{
+            width: $spacer*2.25;
+            height: $spacer*2.25;
+            .icon{
+                height: 1rem;
+            }
+        }
+    }
+    &.btn-lg{
+        .icon{
+            height: $spacer*2.25;
+        }
+        &.rounded-circle{
+            width: $spacer*4.5;
+            height: $spacer*4.5;
+            .icon{
+                height: 1.5rem;
+            }
+        }
+    }
+}
+
+.btn[class*='outline-']{
+    &:focus{
+        .icon{
+            @include svgColor($white);
+        }
+    }
+}
+
+
+// Back to top
+
+.btn-back-to-top{
+    position: fixed;
+    bottom: $spacer*2;
+    right: $spacer*2;
+    z-index: $zindex-fixed;
+}
+
+
+// Loading Spinner
+
+.btn-loading{
+    display: flex;
+    white-space: nowrap;
+    align-items: center;
+    justify-content: center;
+    &:not(.btn-loading-animate){
+        > span{
+        vertical-align: baseline;
+        display: block;
+        line-height: 1;
+        }
+    }
+    .icon{
+        display: none;
+        margin-top: -.5em;
+        margin-bottom: -.5em;
+    }
+    &.btn-loading-animate{
+        .icon{
+        path{
+            animation: spin .5s infinite linear;
+            transform-origin: 12px;
+        }
+        display: inline-block;
+        }
+    }
+}
+
+@keyframes spin{
+0%{ transform: rotateZ(0deg); }
+100%{ transform: rotateZ(360deg); }
+}

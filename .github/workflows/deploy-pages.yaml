@@ -1,4 +1,4 @@
-name: Deploy Definitions to GitHub Pages
+name: Deploy Website and Definitions to GitHub Pages
 
 on:
   push:
@@ -27,12 +27,27 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: website/.nvmrc
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: Build website
+        working-directory: website
+        run: |
+          npm ci
+          npm run build
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # definitions.txt must stay at the site root - the plugin fetches it from https://khromov.github.io/clarity/definitions.txt
       - name: Prepare directory for artifact
         run: |
           mkdir -p _site
+          cp -R website/src/dist/. _site/
           cp definitions.txt _site/
 
       - name: Upload artifact

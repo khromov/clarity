@@ -1,0 +1,37 @@
+// 
+// 
+// icons.scss
+//
+//
+
+
+.icon{
+    flex-shrink: 0;
+    width: auto;
+    height: $spacer*2;
+    &.icon-xs{
+        height: $spacer;
+        path{
+            &[stroke]{
+                stroke-width: 3px;
+            }
+        }
+    }
+    &.icon-sm{
+        height: $spacer*1.5;
+    }
+    &.icon-lg{
+        height: $spacer*4.5;
+    }
+    &.icon-xl{
+        height: $spacer*6;
+    }
+}
+
+@include media-breakpoint-up(md){
+    .icon{
+        height: $spacer*3;
+    }
+}
+
+

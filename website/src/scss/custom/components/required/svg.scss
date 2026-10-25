@@ -1,0 +1,29 @@
+// 
+// 
+// svg.scss
+//
+//
+
+img[data-inject-svg]{
+    opacity: 0;
+}
+
+svg{
+    &[class*='bg-']{
+        background: none !important;
+    }
+}
+
+@each $color, $value in $theme-colors {
+    svg{
+        &.bg-#{$color}{
+            @include svgColor($value);
+        }
+    }
+}
+
+svg{
+    &.bg-white{
+        @include svgColor($white);        
+    }
+}

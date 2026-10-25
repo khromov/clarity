@@ -1,0 +1,24 @@
+// 
+// 
+// colors.scss
+//
+//
+
+.bg-body-color {
+    background: $body-color;
+}
+
+.bg-gradient {
+    background: linear-gradient(to right, $primary, $primary-2) !important;
+}
+
+@each $color,
+$value in $theme-colors {
+    .bg-#{$color}-alt {
+        background-color: rgba($value, .1);
+    }
+}
+
+.bg-white-alt{
+    background-color: rgba($white, .1);
+}
